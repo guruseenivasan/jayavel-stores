@@ -24,6 +24,28 @@ function CategoriesContent() {
   const [selectedMaterial, setSelectedMaterial] = useState<string>("all");
   const [maxPrice, setMaxPrice] = useState<number>(60000);
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
+  const [productsList, setProductsList] = useState(PRODUCTS);
+  const [categoriesList, setCategoriesList] = useState(CATEGORIES);
+
+  useEffect(() => {
+    fetch("/api/products")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && Array.isArray(data.products)) {
+          setProductsList(data.products);
+        }
+      })
+      .catch(() => {});
+
+    fetch("/api/categories")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && Array.isArray(data.categories)) {
+          setCategoriesList(data.categories);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   // Sync state if URL search parameters change
   useEffect(() => {
@@ -51,7 +73,7 @@ function CategoriesContent() {
   const filteredProducts = useMemo(() => {
     const q = search.trim().toLowerCase();
 
-    return PRODUCTS.filter((p) => {
+    return productsList.filter((p) => {
       let matchSearch = true;
       if (q) {
         const inTitle = p.title.toLowerCase().includes(q);
@@ -192,9 +214,9 @@ function CategoriesContent() {
                 }`}
               >
                 <span>All Categories</span>
-                <span>{PRODUCTS.length}</span>
+                <span>{productsList.length}</span>
               </button>
-              {CATEGORIES.map((c) => (
+              {categoriesList.map((c) => (
                 <button
                   key={c.slug}
                   type="button"

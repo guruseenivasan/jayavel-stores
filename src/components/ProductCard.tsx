@@ -22,11 +22,11 @@ export default function ProductCard({ product }: ProductCardProps) {
     <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group border border-[#e5e2e1]">
       <div>
         {/* Image Container with Link to Detail Page */}
-        <Link href={`/products/${product.slug}`} className="block relative aspect-square overflow-hidden bg-[#f0eded]">
+        <Link href={`/products/${product.slug}`} className="block relative aspect-square overflow-hidden bg-white p-2.5">
           <img
             src={product.image}
             alt={product.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
           />
           {product.tag && (

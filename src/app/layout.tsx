@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import LayoutWrapper from "@/components/LayoutWrapper";
 import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
@@ -36,14 +33,7 @@ export default function RootLayout({
       </head>
       <body className="bg-[#fcf9f8] text-[#1b1c1c] font-sans antialiased selection:bg-[#ffdea4] selection:text-[#261900]">
         <LanguageProvider>
-          <Suspense fallback={<div className="h-28 bg-[#fcf9f8]" />}>
-            <Header />
-          </Suspense>
-          <main className="pt-28 md:pt-[162px] min-h-[calc(100vh-140px)] bg-[#fcf9f8]">
-            {children}
-          </main>
-          <WhatsAppButton />
-          <Footer />
+          <LayoutWrapper>{children}</LayoutWrapper>
         </LanguageProvider>
       </body>
     </html>

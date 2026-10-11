@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { PRODUCTS, STORE_CONTACT } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
@@ -19,9 +19,22 @@ export default function KitchenItemsPage() {
     { id: "steel-copper", labelEn: "Salem Steel & Copper (ஸ்டீல் & செம்பு)", labelTa: "ஸ்டீல் & செம்பு" },
   ];
 
+  const [productsList, setProductsList] = useState(PRODUCTS);
+
+  useEffect(() => {
+    fetch("/api/products")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && Array.isArray(data.products)) {
+          setProductsList(data.products);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   // Filter kitchen & silver related products
   const kitchenProducts = useMemo(() => {
-    return PRODUCTS.filter((p) => {
+    return productsList.filter((p) => {
       // Must be related to kitchen, cookware, appliances, or silver
       const isKitchenOrSilver =
         p.categorySlug === "kitchen-items" ||

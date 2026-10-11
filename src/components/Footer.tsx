@@ -143,7 +143,13 @@ export default function Footer() {
       <div className="bg-[#651d32] text-[#e5e2e1]/80 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
           <span>&copy; 2025 Jayavel Stores Madurai. All rights reserved.</span>
-          <span className="text-[#eec067]">Authentic Metallurgy &amp; Homestead Craftsmanship</span>
+          <div className="flex items-center gap-3">
+            <span className="text-[#eec067]">Authentic Metallurgy &amp; Homestead Craftsmanship</span>
+            <span className="opacity-40">•</span>
+            <Link href="/admin" className="text-white/60 hover:text-[#ffdea4] transition-colors underline-offset-2 hover:underline">
+              Admin Portal
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

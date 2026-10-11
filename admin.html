@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Portal | Jayavel Stores Madurai</title>
+  <link rel="icon" type="image/png" href="logo.png"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              red: '#7c1d24',
+              dark: '#48061d',
+              gold: '#eec067',
+              goldLight: '#ffdea4',
+            }
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#fcf9f8] text-[#1b1c1c] font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed top-6 right-6 z-50 px-5 py-3 rounded-xl shadow-2xl text-sm font-semibold text-white transition-all duration-300 opacity-0 pointer-events-none transform translate-y-[-10px] bg-emerald-700 flex items-center gap-2">
+    <span id="toast-text">Success</span>
+  </div>
+
+  <!-- LOGIN SCREEN -->
+  <div id="login-section" class="min-h-screen bg-gradient-to-br from-[#2a0812] via-[#48061d] to-[#1a040b] flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden border border-[#d9c1c4]/30">
+      <div class="bg-[#48061d] p-8 text-center text-white relative">
+        <div class="w-16 h-16 mx-auto mb-3 bg-[#eec067]/20 border border-[#eec067] rounded-full flex items-center justify-center shadow-inner">
+          <span class="material-symbols-outlined text-[32px] text-[#eec067]">lock</span>
+        </div>
+        <h1 class="text-2xl font-bold tracking-wide font-serif text-[#ffdea4]">JAYAVEL STORES</h1>
+        <p class="text-xs uppercase tracking-widest text-white/80 mt-1">Admin &amp; Inventory Management Portal</p>
+        <p class="text-[11px] text-[#ffdea4]/70 mt-1">Madurai Heritage Brassware &amp; Pooja Essentials</p>
+      </div>
+
+      <form id="login-form" class="p-8 space-y-5">
+        <div id="login-error" class="hidden p-3 bg-rose-50 border border-rose-200 text-rose-800 text-xs rounded-xl flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px] text-rose-600">error</span>
+          <span id="login-error-text">Invalid credentials</span>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[#534245] uppercase tracking-wider mb-1.5">Admin Username</label>
+          <input type="text" id="login-username" required value="admin" class="w-full px-4 py-3 bg-[#fcf9f8] border border-[#d9c1c4] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#7c1d24] text-[#1b1c1c]"/>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[#534245] uppercase tracking-wider mb-1.5">Password</label>
+          <input type="password" id="login-password" required value="admin123" placeholder="Enter password" class="w-full px-4 py-3 bg-[#fcf9f8] border border-[#d9c1c4] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#7c1d24] text-[#1b1c1c]"/>
+        </div>
+
+        <div class="p-3 bg-[#fff9ea] border border-[#f3ddab] rounded-xl text-xs text-[#7c5b16] flex items-center justify-between">
+          <div>
+            <span class="font-semibold">Default:</span>
+            <span class="ml-1 font-mono">admin / admin123</span>
+          </div>
+          <button type="button" onclick="document.getElementById('login-username').value='admin';document.getElementById('login-password').value='admin123';" class="text-[11px] font-bold text-[#966710] underline cursor-pointer">
+            Auto Fill
+          </button>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 bg-[#7c1d24] hover:bg-[#5e1319] text-white font-bold rounded-xl text-sm shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer">
+          <span>Sign In to Admin Portal</span>
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </button>
+
+        <div class="text-center pt-2">
+          <a href="index.html" class="text-xs text-[#534245] hover:text-[#7c1d24] transition-colors">← Return to Online Store</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD (Hidden until logged in) -->
+  <div id="admin-dashboard" class="hidden min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-[#48061d] text-white border-b border-[#eec067]/30 sticky top-0 z-40 shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[#eec067] text-[#48061d] flex items-center justify-center font-bold text-lg shadow">JV</div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="font-bold text-base tracking-wide font-serif text-[#ffdea4]">JAYAVEL STORES</h1>
+              <span class="px-2 py-0.5 text-[10px] uppercase font-bold tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full">Admin Active</span>
+            </div>
+            <p class="text-[11px] text-white/70">Category Image Upload &amp; Inventory Manager</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="product-catalogue.html" target="_blank" class="px-3.5 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors border border-white/10">
+            <span>View Catalogue</span>
+            <span class="material-symbols-outlined text-[14px] text-[#eec067]">open_in_new</span>
+          </a>
+
+          <button onclick="openProductModal('create')" class="px-4 py-2 bg-[#eec067] hover:bg-[#dfaf53] text-[#48061d] font-bold rounded-xl text-xs flex items-center gap-2 shadow hover:shadow-lg transition-all cursor-pointer">
+            <span class="material-symbols-outlined text-[16px]">add</span>
+            <span>Upload New Product</span>
+          </button>
+
+          <button onclick="handleLogout()" title="Sign Out" class="p-2 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs transition-colors border border-white/10 cursor-pointer">
+            <span class="material-symbols-outlined text-[16px]">logout</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-1 w-full space-y-6">
+      <!-- Stats -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="p-4 bg-white rounded-2xl border border-[#e5e2e1] shadow-sm">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#534245]">Total Products</span>
+          <div id="stat-total" class="text-2xl font-extrabold text-[#48061d] mt-1">0</div>
+          <span class="text-[11px] text-emerald-600 font-medium">In Madurai catalog</span>
+        </div>
+        <div class="p-4 bg-white rounded-2xl border border-[#e5e2e1] shadow-sm">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#534245]">Categories</span>
+          <div id="stat-categories" class="text-2xl font-extrabold text-[#7c1d24] mt-1">0</div>
+          <button onclick="openCategoryModal()" class="text-[11px] text-[#7c1d24] hover:underline font-semibold">+ Add new category</button>
+        </div>
+        <div class="p-4 bg-white rounded-2xl border border-[#e5e2e1] shadow-sm">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#534245]">In Stock</span>
+          <div id="stat-instock" class="text-2xl font-extrabold text-emerald-700 mt-1">0</div>
+          <span class="text-[11px] text-emerald-600 font-medium">Ready for dispatch</span>
+        </div>
+        <div class="p-4 bg-white rounded-2xl border border-[#e5e2e1] shadow-sm">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#534245]">Sold Out</span>
+          <div id="stat-outstock" class="text-2xl font-extrabold text-amber-700 mt-1">0</div>
+          <span class="text-[11px] text-amber-600 font-medium">Requires crafting</span>
+        </div>
+      </div>
+
+      <!-- Categories Filter Bar -->
+      <div class="bg-white p-4 rounded-2xl border border-[#e5e2e1] shadow-sm space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-[#48061d]">Filter by Particular Category</h2>
+          <button onclick="openCategoryModal()" class="text-xs font-bold text-[#7c1d24] hover:text-[#48061d] flex items-center gap-1 cursor-pointer">
+            <span>+ Add Category</span>
+          </button>
+        </div>
+        <div id="category-pills" class="flex items-center gap-2 overflow-x-auto pb-1">
+          <!-- Dynamic Category Pills -->
+        </div>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="bg-white p-4 rounded-2xl border border-[#e5e2e1] shadow-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+        <div class="relative flex-1">
+          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-[18px]">search</span>
+          <input type="text" id="filter-search" oninput="renderProductsTable()" placeholder="Search products by title, Tamil name, ID, or material..." class="w-full pl-10 pr-4 py-2 bg-[#fcf9f8] border border-[#d9c1c4] rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#7c1d24]"/>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <select id="filter-stock" onchange="renderProductsTable()" class="px-3 py-2 bg-[#fcf9f8] border border-[#d9c1c4] rounded-xl text-xs text-[#534245] focus:outline-none">
+            <option value="all">All Stock Status</option>
+            <option value="inStock">In Stock Only</option>
+            <option value="outOfStock">Out of Stock</option>
+          </select>
+
+          <select id="filter-sort" onchange="renderProductsTable()" class="px-3 py-2 bg-[#fcf9f8] border border-[#d9c1c4] rounded-xl text-xs text-[#534245] focus:outline-none">
+            <option value="newest">Sort: Default / Newest</option>
+            <option value="priceAsc">Price: Low to High</option>
+            <option value="priceDesc">Price: High to Low</option>
+            <option value="name">Name: A to Z</option>
+          </select>
+
+          <button onclick="refreshData()" title="Reload Data" class="p-2 bg-[#f6f3f2] hover:bg-[#ece8e7] text-[#534245] rounded-xl cursor-pointer">
+            <span class="material-symbols-outlined text-[18px]">refresh</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Products Table -->
+      <div class="bg-white rounded-2xl border border-[#e5e2e1] shadow-sm overflow-hidden">
+        <div class="p-4 border-b border-[#e5e2e1] flex items-center justify-between">
+          <h3 class="text-sm font-bold text-[#48061d]">
+            Products Inventory <span id="table-count" class="text-xs font-normal text-[#534245]">(0 items)</span>
+          </h3>
+          <button onclick="openProductModal('create')" class="px-3 py-1.5 bg-[#7c1d24] hover:bg-[#5e1319] text-white rounded-lg text-xs font-bold flex items-center gap-1.5 shadow cursor-pointer">
+            <span>+ Add Product</span>
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-[#fcf9f8] border-b border-[#e5e2e1] text-[#534245] font-bold uppercase tracking-wider text-[11px]">
+                <th class="py-3 px-4">Item &amp; Image</th>
+                <th class="py-3 px-4">Category</th>
+                <th class="py-3 px-4">Price Money</th>
+                <th class="py-3 px-4">Specifications</th>
+                <th class="py-3 px-4 text-center">Stock</th>
+                <th class="py-3 px-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="products-tbody" class="divide-y divide-[#e5e2e1]">
+              <!-- Products rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- PRODUCT CREATE / EDIT MODAL -->
+  <div id="product-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden border border-[#d9c1c4]">
+      <div class="bg-[#48061d] p-5 text-white flex items-center justify-between border-b border-[#eec067]/30">
+        <div class="flex items-center gap-3">
+          <div id="modal-icon" class="w-9 h-9 rounded-xl bg-[#eec067] text-[#48061d] flex items-center justify-center font-bold">+</div>
+          <div>
+            <h3 id="modal-title" class="font-bold text-base font-serif text-[#ffdea4]">Add &amp; Upload Product to Category</h3>
+            <p class="text-xs text-white/70">Category selection, image upload, price money, and item description</p>
+          </div>
+        </div>
+        <button onclick="closeProductModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white text-sm cursor-pointer">✕</button>
+      </div>
+
+      <form id="product-form" onsubmit="handleSaveProduct(event)" class="flex-1 overflow-y-auto p-6 space-y-6">
+        <input type="hidden" id="form-edit-id" value=""/>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Left 7 cols: Inputs -->
+          <div class="lg:col-span-7 space-y-5">
+            <!-- Category Selection -->
+            <div class="p-4 bg-[#fffbf5] border border-[#f3ddab] rounded-2xl space-y-2">
+              <div class="flex items-center justify-between">
+                <label class="text-xs font-bold text-[#48061d] uppercase tracking-wider">
+                  1. Target Category <span class="text-rose-600">*</span>
+                </label>
+                <button type="button" onclick="openCategoryModal()" class="text-[11px] font-bold text-[#7c1d24] hover:underline cursor-pointer">
+                  + Create Custom Category
+                </button>
+              </div>
+              <select id="form-category" onchange="updateLivePreview()" required class="w-full px-3.5 py-2.5 bg-white border border-[#d9c1c4] rounded-xl text-xs font-semibold text-[#1b1c1c] focus:outline-none focus:ring-2 focus:ring-[#7c1d24]">
+                <!-- Options populated by JS -->
+              </select>
+              <p class="text-[11px] text-[#7c5b16]">The uploaded product will appear directly under this particular category.</p>
+            </div>
+
+            <!-- Image Upload Zone -->
+            <div class="space-y-2">
+              <label class="text-xs font-bold text-[#48061d] uppercase tracking-wider block">
+                2. Product Image Upload <span class="text-rose-600">*</span>
+              </label>
+
+              <div id="drop-zone" onclick="document.getElementById('form-file-input').click()" class="border-2 border-dashed border-[#d9c1c4] rounded-2xl p-6 text-center cursor-pointer hover:border-[#7c1d24] bg-[#fcf9f8] hover:bg-[#faf4f5] transition-all flex flex-col items-center justify-center gap-2">
+                <input type="file" id="form-file-input" onchange="handleFileSelect(event)" accept="image/*" class="hidden"/>
+                <div id="drop-zone-placeholder">
+                  <div class="w-12 h-12 rounded-full bg-[#f3edf0] text-[#7c1d24] flex items-center justify-center mx-auto mb-2">
+                    <span class="material-symbols-outlined text-[24px]">cloud_upload</span>
+                  </div>
+                  <p class="text-xs font-bold text-[#48061d]">Drag &amp; drop product photo here, or <span class="text-[#7c1d24] underline">browse</span></p>
+                  <p class="text-[11px] text-gray-400 mt-0.5">JPG, PNG, WEBP up to 15MB</p>
+                </div>
+                <div id="drop-zone-preview" class="hidden flex items-center gap-4 text-left w-full">
+                  <img id="drop-zone-img" src="" alt="Preview" class="w-16 h-16 rounded-xl object-cover bg-white border border-emerald-300 shadow shrink-0"/>
+                  <div class="flex-1 min-w-0">
+                    <span class="text-xs font-bold text-emerald-800 flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[16px] text-emerald-600">check_circle</span> Image Ready
+                    </span>
+                    <p id="drop-zone-filename" class="text-[11px] text-gray-500 truncate"></p>
+                    <span class="text-[11px] text-[#7c1d24] font-semibold underline">Click to change photo</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Option 1: Clean Studio White Background Toggle -->
+              <div class="flex items-center justify-between p-3 bg-amber-50/80 border border-amber-200/90 rounded-2xl">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-7 h-7 rounded-lg bg-amber-100 text-amber-900 flex items-center justify-center font-bold text-xs">✨</span>
+                  <div>
+                    <span class="text-xs font-bold text-[#48061d]">Option 1: Clean Studio White Background</span>
+                    <p class="text-[10px] text-[#7c5b16] mt-0.5 leading-snug">Standard e-commerce catalog look with crisp soft contact shadows; highly uniform across all categories (statues, brass lamps, cookware, furniture).</p>
+                  </div>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer shrink-0 ml-2">
+                  <input type="checkbox" id="auto-white-bg" checked class="sr-only peer"/>
+                  <div class="w-9 h-5 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#7c1d24]"></div>
+                </label>
+              </div>
+
+              <!-- Option 1: AI Prompt Standard Card -->
+              <div class="p-3 bg-[#fffaf0] border border-[#f3ddab] rounded-2xl space-y-2">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-xs font-bold text-[#48061d] flex items-center gap-1.5">
+                    <span class="px-1.5 py-0.5 rounded bg-[#7c1d24] text-white text-[10px] font-bold">AI PROMPT</span>
+                    Option 1 AI Prompt Standard (Clean Studio White)
+                  </span>
+                  <button type="button" onclick="copyAiImagePrompt()" class="px-2.5 py-1 bg-white hover:bg-[#fbf0f2] text-[#7c1d24] border border-[#d9c1c4] rounded-lg text-[11px] font-bold shadow-sm transition-all flex items-center gap-1 cursor-pointer shrink-0">
+                    <span class="material-symbols-outlined text-[14px]">content_copy</span>
+                    <span>Copy AI Prompt</span>
+                  </button>
+                </div>
+                <p class="text-[10px] text-[#7c5b16] leading-relaxed">
+                  Use this standardized prompt when generating product images with AI (Midjourney, ChatGPT, Imagen) to maintain 100% catalog uniformity:
+                </p>
+                <div id="ai-prompt-preview" class="p-2 bg-white rounded-xl border border-[#f0d8a8] text-[10px] font-mono text-gray-700 select-all leading-relaxed">
+                  Clean Studio White – Standard e-commerce catalog look with crisp soft contact shadows; highly uniform across all categories (statues, brass lamps, cookware, furniture). Professional studio product photograph of handcrafted Indian item, pure white background (#FFFFFF), crisp contact drop shadow.
+                </div>
+              </div>
+
+              <!-- Or URL Input -->
+              <div class="flex items-center gap-2 pt-1">
+                <span class="text-[11px] text-gray-400">Or image URL:</span>
+                <input type="text" id="form-image-url" oninput="handleImageUrlInput()" placeholder="https://... or /uploads/..." class="flex-1 px-3 py-1.5 bg-[#fcf9f8] border border-[#d9c1c4] rounded-lg text-xs"/>
+              </div>
+            </div>
+
+            <!-- Title & Tamil Title -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="text-xs font-bold text-[#48061d] uppercase tracking-wider block mb-1">
+                  Product Title (English) <span class="text-rose-600">*</span>
+                </label>
+                <input type="text" id="form-title" oninput="updateLivePreview()" required placeholder="e.g. Classic Annam Kuthu Vilakku 24 Inches" class="w-full px-3.5 py-2.5 bg-[#fcf9f8] border border-[#d9c1c4] rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#7c1d24]"/>
+              </div>
+              <div>
+                <label class="text-xs font-bold text-[#48061d] uppercase tracking-wider block mb-1">Tamil Title (தமிழ் பெயர்)</label>
+                <input type="text" id="form-tamil-title" oninput="updateLivePreview()" placeholder="e.g. பாரம்பரிய அன்னம் குத்து விளக்கு" class="w-full px-3.5 py-2.5 bg-[#fcf9f8] border border-[#d9c1c4] rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#7c1d24]"/>
+              </div>
+            </div>
+
+            <!-- Price Money & MRP -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 bg-[#fff9ea] border border-[#f3ddab] rounded-2xl">
+              <div>
+                <label class="text-xs font-bold text-[#7c1d24] uppercase tracking-wider block mb-1">
+                  Price Money (₹) <span class="text-rose-600">*</span>
+                </label>
+                <div class="relative">
+                  <span class="absolute left-3.5 top-1/2 -translate-y-1/2 font-bold text-gray-500">₹</span>
+                  <input type="number" id="form-price" oninput="updateLivePreview()" required min="1" placeholder="7850" class="w-full pl-8 pr-3.5 py-2.5 bg-white border border-[#d9c1c4] rounded-xl text-sm font-extrabold text-[#7c1d24] focus:outline-none focus:ring-2 focus:ring-[#7c1d24]"/>
+                </div>
+              </div>
+              <div>
+                <label class="text-xs font-bold text-[#534245] uppercase tracking-wider block mb-1">MRP / Strike Price (₹)</label>
+                <div class="relative">
+                  <span class="absolute left-3.5 top-1/2 -translate-y-1/2 font-bold text-gray-400">₹</span>
+                  <input type="number" id="form-orig-price" oninput="updateLivePreview()" min="1" placeholder="9200 (shows discount)" class="w-full pl-8 pr-3.5 py-2.5 bg-white border border-[#d9c1c4] rounded-xl text-xs font-semibold text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#7c1d24]"/>
+                </div>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div>
+              <label class="text-xs font-bold text-[#48061d] uppercase tracking-wider block mb-1">
+                Product Description <span class="text-rose-600">*</span>
+              </label>
+              <textarea id="form-desc" oninput="updateLivePreview()" required rows="3" placeholder="Handcrafted virgin bell-grade brass standing oil lamps cast with traditional lost-wax methodology in Nachiarkoil..." class="w-full px-3.5 py-2.5 bg-[#fcf9f8] border border-[#d9c1c4] rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#7c1d24]"></textarea>
+            </div>
+
+            <!-- Features -->
+            <div>
+              <label class="text-xs font-bold text-[#48061d] uppercase tracking-wider block mb-1">Key Highlights / Features (One per line)</label>
+              <textarea id="form-features" rows="2" placeholder="Virgin Bell Brass: Cu-Zn 60:40 alloy ratio&#10;5-Tier Threaded Modular Assembly&#10;Lifetime Polish Assistance" class="w-full px-3.5 py-2.5 bg-[#fcf9f8] border border-[#d9c1c4] rounded-xl text-xs font-mono focus:outline-none focus:ring-2 focus:ring-[#7c1d24]"></textarea>
+            </div>
+
+            <!-- Specs -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div>
+                <label class="text-[11px] font-bold text-[#534245] uppercase block mb-1">Material</label>
+                <input type="text" id="form-material" oninput="updateLivePreview()" value="Pure Bell Brass" class="w-full px-3 py-2 bg-[#fcf9f8] border border-[#d9c1c4] rounded-xl text-xs"/>
+              </div>
+              <div>
+                <label class="text-[11px] font-bold text-[#534245] uppercase block mb-1">Weight</label>
+                <input type="text" id="form-weight" placeholder="5.2 kg" class="w-full px-3 py-2 bg-[#fcf9f8] border border-[#d9c1c4] rounded-xl text-xs"/>
+              </div>
+              <div>
+                <label class="text-[11px] font-bold text-[#534245] uppercase block mb-1">Height / Size</label>
+                <input type="text" id="form-height" placeholder="24 Inches" class="w-full px-3 py-2 bg-[#fcf9f8] border border-[#d9c1c4] rounded-xl text-xs"/>
+              </div>
+              <div>
+                <label class="text-[11px] font-bold text-[#534245] uppercase block mb-1">Badge Tag</label>
+                <input type="text" id="form-tag" oninput="updateLivePreview()" value="New Arrival" class="w-full px-3 py-2 bg-[#fcf9f8] border border-[#d9c1c4] rounded-xl text-xs"/>
+              </div>
+            </div>
+
+            <!-- In Stock -->
+            <div class="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-xl">
+              <input type="checkbox" id="form-instock" checked onchange="updateLivePreview()" class="w-4 h-4 text-[#7c1d24] rounded"/>
+              <label for="form-instock" class="text-xs font-bold text-gray-700 cursor-pointer">Mark Product as Currently In Stock</label>
+            </div>
+          </div>
+
+          <!-- Right 5 cols: Live Preview -->
+          <div class="lg:col-span-5 bg-[#faf6f5] p-5 rounded-2xl border border-[#e5e2e1] space-y-4">
+            <div class="flex items-center justify-between border-b border-[#e5e2e1] pb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#48061d] flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Live Customer Preview
+              </span>
+              <span class="text-[10px] text-gray-500 font-mono">Storefront Card</span>
+            </div>
+
+            <!-- Preview Card -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-[#e5e2e1] max-w-sm mx-auto">
+              <div class="relative aspect-square bg-white p-2.5 overflow-hidden flex items-center justify-center border-b border-[#e5e2e1]">
+                <img id="prev-img" src="https://placehold.co/400x400/48061d/ffffff?text=Upload+Image" alt="Preview" class="w-full h-full object-contain"/>
+                <div id="prev-tag" class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#48061d] text-[#eec067] shadow">New Arrival</div>
+                <div id="prev-cat" class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/90 text-gray-700 shadow backdrop-blur-xs">Kuthu Vilakku</div>
+              </div>
+
+              <div class="p-4 space-y-2">
+                <h4 id="prev-title" class="font-bold text-[#1b1c1c] text-sm line-clamp-1">Sample Product Title</h4>
+                <p id="prev-tamil" class="text-xs text-[#7c1d24] line-clamp-1"></p>
+
+                <div class="flex items-baseline gap-2 pt-1">
+                  <span id="prev-price" class="text-lg font-extrabold text-[#7c1d24]">₹7,850</span>
+                  <span id="prev-orig-price" class="text-xs text-gray-400 line-through">₹9,200</span>
+                  <span id="prev-discount" class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">15% OFF</span>
+                </div>
+
+                <p id="prev-desc" class="text-[11px] text-gray-500 line-clamp-2">Handcrafted traditional metalware description will appear here.</p>
+
+                <div class="pt-2 flex items-center justify-between text-[11px] border-t border-gray-100">
+                  <span id="prev-mat" class="text-gray-500 font-semibold">Pure Bell Brass</span>
+                  <span id="prev-stock" class="text-emerald-700 font-bold">● In Stock</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-[#e5e2e1] flex items-center justify-end gap-3 sticky bottom-0 bg-white">
+          <button type="button" onclick="closeProductModal()" class="px-5 py-2.5 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100 text-xs font-bold cursor-pointer">Cancel</button>
+          <button type="submit" class="px-6 py-2.5 rounded-xl bg-[#7c1d24] hover:bg-[#5e1319] text-white text-xs font-bold shadow-lg transition-all cursor-pointer">
+            Save &amp; Publish Product
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- CATEGORY MODAL -->
+  <div id="category-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl border border-[#d9c1c4]">
+      <div class="flex items-center justify-between">
+        <h4 class="font-bold text-sm text-[#48061d]">Add New Category</h4>
+        <button onclick="closeCategoryModal()" class="text-gray-400 hover:text-gray-600 text-sm font-bold">✕</button>
+      </div>
+      <form onsubmit="handleCreateCategory(event)" class="space-y-4">
+        <div>
+          <label class="text-xs font-bold text-[#534245] uppercase block mb-1">Category Name</label>
+          <input type="text" id="new-cat-name" required placeholder="e.g. Copper Water Vessels &amp; Bottles" class="w-full px-3.5 py-2.5 bg-[#fcf9f8] border border-[#d9c1c4] rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#7c1d24]"/>
+        </div>
+        <div class="flex items-center gap-2 pt-1">
+          <button type="button" onclick="closeCategoryModal()" class="flex-1 py-2 rounded-xl border border-gray-300 text-gray-700 text-xs font-bold hover:bg-gray-50 cursor-pointer">Cancel</button>
+          <button type="submit" class="flex-1 py-2 rounded-xl bg-[#7c1d24] hover:bg-[#5e1319] text-white text-xs font-bold shadow cursor-pointer">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Default categories
+    const DEFAULT_CATEGORIES = [
+      { name: "Kuthu Vilakku (Traditional Lamps)", slug: "kuthu-vilakku" },
+      { name: "God Statues (Vigraham)", slug: "pooja-statues" },
+      { name: "Kitchen Items (Brass & Cookware)", slug: "kitchen-items" },
+      { name: "Traditional Cookware (Vessels)", slug: "traditional-cookware" },
+      { name: "Heritage Wooden Furniture & Mandapams", slug: "furniture" },
+      { name: "Pooja Items & Peedam", slug: "pooja-items" },
+      { name: "Silver & Silver-Plated Essentials", slug: "silver-items" },
+      { name: "Stainless Steel & Triply Cookware", slug: "stainless-steel" },
+      { name: "Uruli & Floral Decoratives", slug: "uruli-decoratives" },
+      { name: "Home Appliances & Essentials", slug: "appliances" }
+    ];
+
+    let allProducts = [];
+    let allCategories = [];
+    let currentCategoryFilter = "all";
+    let uploadedImageBase64 = "";
+
+    // Initialize
+    window.addEventListener("DOMContentLoaded", () => {
+      checkAuth();
+    });
+
+    function showToast(text, isError = false) {
+      const toast = document.getElementById("toast");
+      const toastText = document.getElementById("toast-text");
+      toastText.innerText = text;
+      toast.className = "fixed top-6 right-6 z-50 px-5 py-3 rounded-xl shadow-2xl text-sm font-semibold text-white transition-all duration-300 transform opacity-100 translate-y-0 " + (isError ? "bg-rose-700" : "bg-emerald-700");
+      setTimeout(() => {
+        toast.className = toast.className.replace("opacity-100 translate-y-0", "opacity-0 translate-y-[-10px] pointer-events-none");
+      }, 3500);
+    }
+
+    // Auth
+    function checkAuth() {
+      const token = localStorage.getItem("jayavel_admin_token");
+      if (token) {
+        document.getElementById("login-section").classList.add("hidden");
+        document.getElementById("admin-dashboard").classList.remove("hidden");
+        loadData();
+      } else {
+        document.getElementById("login-section").classList.remove("hidden");
+        document.getElementById("admin-dashboard").classList.add("hidden");
+      }
+    }
+
+    document.getElementById("login-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const u = document.getElementById("login-username").value.trim().toLowerCase();
+      const p = document.getElementById("login-password").value.trim();
+
+      if ((u === "admin" || u === "jayavel") && (p === "admin123" || p === "jayavel123" || p === "admin")) {
+        localStorage.setItem("jayavel_admin_token", "admin_session_" + Date.now());
+        document.getElementById("login-error").classList.add("hidden");
+        checkAuth();
+        showToast("Welcome to Jayavel Stores Admin Portal");
+      } else {
+        document.getElementById("login-error-text").innerText = "Invalid username or password";
+        document.getElementById("login-error").classList.remove("hidden");
+      }
+    });
+
+    function handleLogout() {
+      localStorage.removeItem("jayavel_admin_token");
+      checkAuth();
+    }
+
+    // Load data from API or localStorage
+    async function loadData() {
+      // 1. Categories
+      const storedCats = localStorage.getItem("jayavel_custom_categories");
+      if (storedCats) {
+        try {
+          const parsed = JSON.parse(storedCats);
+          allCategories = [...DEFAULT_CATEGORIES, ...parsed.filter(p => !DEFAULT_CATEGORIES.some(dc => dc.slug === p.slug))];
+        } catch {
+          allCategories = [...DEFAULT_CATEGORIES];
+        }
+      } else {
+        allCategories = [...DEFAULT_CATEGORIES];
+      }
+
+      // Try fetching categories from API if Next.js server is online
+      try {
+        const catRes = await fetch("/api/categories");
+        const catData = await catRes.json();
+        if (catData.success && Array.isArray(catData.categories)) {
+          allCategories = catData.categories;
+        }
+      } catch {}
+
+      // 2. Products
+      let loadedFromApi = false;
+      try {
+        const prodRes = await fetch("/api/products");
+        const prodData = await prodRes.json();
+        if (prodData.success && Array.isArray(prodData.products)) {
+          allProducts = prodData.products;
+          loadedFromApi = true;
+        }
+      } catch {}
+
+      if (!loadedFromApi) {
+        const storedProducts = localStorage.getItem("jayavel_admin_products");
+        if (storedProducts) {
+          try {
+            allProducts = JSON.parse(storedProducts);
+          } catch {}
+        }
+      }
+
+      renderCategoriesPills();
+      populateCategoryDropdown();
+      renderProductsTable();
+      updateStats();
+    }
+
+    function refreshData() {
+      loadData();
+      showToast("Data refreshed");
+    }
+
+    function updateStats() {
+      document.getElementById("stat-total").innerText = allProducts.length;
+      document.getElementById("stat-categories").innerText = allCategories.length;
+      document.getElementById("stat-instock").innerText = allProducts.filter(p => p.inStock).length;
+      document.getElementById("stat-outstock").innerText = allProducts.filter(p => !p.inStock).length;
+    }
+
+    function renderCategoriesPills() {
+      const container = document.getElementById("category-pills");
+      container.innerHTML = "";
+
+      // "All" button
+      const allBtn = document.createElement("button");
+      allBtn.className = `px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer flex items-center gap-1.5 ${currentCategoryFilter === "all" ? "bg-[#7c1d24] text-white shadow-sm" : "bg-[#f6f3f2] text-[#534245] hover:bg-[#ece8e7]"}`;
+      allBtn.innerHTML = `<span>All Items</span><span class="text-[10px] opacity-80 bg-black/10 px-1.5 py-0.5 rounded-full">${allProducts.length}</span>`;
+      allBtn.onclick = () => { currentCategoryFilter = "all"; renderCategoriesPills(); renderProductsTable(); };
+      container.appendChild(allBtn);
+
+      allCategories.forEach(cat => {
+        const count = allProducts.filter(p => p.categorySlug === cat.slug || (p.category && p.category.toLowerCase().includes(cat.name.toLowerCase()))).length;
+        const btn = document.createElement("button");
+        const isSel = currentCategoryFilter === cat.slug;
+        btn.className = `px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer flex items-center gap-1.5 ${isSel ? "bg-[#7c1d24] text-white shadow-sm" : "bg-[#f6f3f2] text-[#534245] hover:bg-[#ece8e7]"}`;
+        btn.innerHTML = `<span>${cat.name.split('(')[0].trim()}</span><span class="text-[10px] opacity-80 bg-black/10 px-1.5 py-0.5 rounded-full">${count}</span>`;
+        btn.onclick = () => { currentCategoryFilter = cat.slug; renderCategoriesPills(); renderProductsTable(); };
+        container.appendChild(btn);
+      });
+    }
+
+    function populateCategoryDropdown() {
+      const sel = document.getElementById("form-category");
+      sel.innerHTML = "";
+      allCategories.forEach(cat => {
+        const opt = document.createElement("option");
+        opt.value = cat.slug;
+        opt.innerText = cat.name;
+        sel.appendChild(opt);
+      });
+    }
+
+    function renderProductsTable() {
+      const tbody = document.getElementById("products-tbody");
+      const search = document.getElementById("filter-search").value.toLowerCase().trim();
+      const stock = document.getElementById("filter-stock").value;
+      const sort = document.getElementById("filter-sort").value;
+
+      let filtered = allProducts.filter(p => {
+        if (currentCategoryFilter !== "all") {
+          const matchSlug = p.categorySlug === currentCategoryFilter;
+          const matchName = p.category && p.category.toLowerCase().includes(currentCategoryFilter.toLowerCase());
+          if (!matchSlug && !matchName) return false;
+        }
+        if (stock === "inStock" && !p.inStock) return false;
+        if (stock === "outOfStock" && p.inStock) return false;
+        if (search) {
+          const inTitle = p.title && p.title.toLowerCase().includes(search);
+          const inTamil = p.tamilTitle && p.tamilTitle.toLowerCase().includes(search);
+          const inDesc = p.description && p.description.toLowerCase().includes(search);
+          const inId = p.id && p.id.toLowerCase().includes(search);
+          if (!inTitle && !inTamil && !inDesc && !inId) return false;
+        }
+        return true;
+      });
+
+      if (sort === "priceAsc") filtered.sort((a,b) => a.price - b.price);
+      if (sort === "priceDesc") filtered.sort((a,b) => b.price - a.price);
+      if (sort === "name") filtered.sort((a,b) => a.title.localeCompare(b.title));
+
+      document.getElementById("table-count").innerText = `(${filtered.length} of ${allProducts.length} items shown)`;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-gray-500 text-xs">No products found matching filters.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(p => `
+        <tr class="hover:bg-[#faf6f5] transition-colors">
+          <td class="py-3 px-4">
+            <div class="flex items-center gap-3">
+              <img src="${p.image || 'logo.png'}" onerror="this.src='logo.png'" class="w-14 h-14 rounded-xl object-cover bg-gray-100 border border-[#e5e2e1] shrink-0"/>
+              <div class="max-w-xs space-y-0.5">
+                <span class="font-mono text-[10px] text-gray-500">${p.id || 'JV-ITEM'}</span>
+                <div class="font-bold text-[#1b1c1c] line-clamp-1 text-sm">${p.title}</div>
+                ${p.tamilTitle ? `<div class="text-[11px] text-[#7c1d24] line-clamp-1">${p.tamilTitle}</div>` : ''}
+                ${p.tag ? `<span class="inline-block px-1.5 py-0.2 bg-[#fff3dc] text-[#9b6a15] rounded text-[10px] font-semibold border border-[#eed09a]">${p.tag}</span>` : ''}
+              </div>
+            </div>
+          </td>
+          <td class="py-3 px-4">
+            <span class="px-2 py-1 bg-[#f3edf0] text-[#48061d] rounded-lg font-semibold text-[11px] inline-block">${p.category || 'General'}</span>
+          </td>
+          <td class="py-3 px-4">
+            <div class="font-extrabold text-[#7c1d24] text-sm">₹${Number(p.price).toLocaleString('en-IN')}</div>
+            ${p.originalPrice && p.originalPrice > p.price ? `<div class="text-[11px] text-gray-400 line-through">₹${Number(p.originalPrice).toLocaleString('en-IN')}</div>` : ''}
+          </td>
+          <td class="py-3 px-4 text-gray-600 text-[11px]">
+            <div><span class="font-semibold text-gray-700">Material:</span> ${p.material || 'Bell Brass'}</div>
+            ${p.weight ? `<div><span class="font-semibold text-gray-700">Weight:</span> ${p.weight}</div>` : ''}
+          </td>
+          <td class="py-3 px-4 text-center">
+            <button onclick="toggleStock('${p.id}')" class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase cursor-pointer ${p.inStock ? 'bg-emerald-100 text-emerald-800 border border-emerald-300' : 'bg-rose-100 text-rose-800 border border-rose-300'}">
+              ${p.inStock ? '● In Stock' : '○ Sold Out'}
+            </button>
+          </td>
+          <td class="py-3 px-4 text-right">
+            <div class="flex items-center justify-end gap-1.5">
+              <button onclick="editProduct('${p.id}')" title="Edit" class="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg cursor-pointer">
+                <span class="material-symbols-outlined text-[18px]">edit</span>
+              </button>
+              <button onclick="deleteProduct('${p.id}')" title="Delete" class="p-1.5 text-rose-600 hover:bg-rose-50 rounded-lg cursor-pointer">
+                <span class="material-symbols-outlined text-[18px]">delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    // Modal Handlers
+    function openProductModal(mode = 'create', id = null) {
+      const modal = document.getElementById("product-modal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+
+      if (mode === 'create') {
+        document.getElementById("modal-title").innerText = "Add & Upload Product to Category";
+        document.getElementById("modal-icon").innerText = "+";
+        document.getElementById("form-edit-id").value = "";
+        document.getElementById("product-form").reset();
+        uploadedImageBase64 = "";
+        document.getElementById("drop-zone-placeholder").classList.remove("hidden");
+        document.getElementById("drop-zone-preview").classList.add("hidden");
+        document.getElementById("form-tag").value = "New Arrival";
+        document.getElementById("form-material").value = "Pure Bell Brass";
+        document.getElementById("form-instock").checked = true;
+      } else {
+        const p = allProducts.find(item => item.id === id);
+        if (!p) return;
+        document.getElementById("modal-title").innerText = "Edit Product Details";
+        document.getElementById("modal-icon").innerText = "✎";
+        document.getElementById("form-edit-id").value = p.id;
+        document.getElementById("form-title").value = p.title || "";
+        document.getElementById("form-tamil-title").value = p.tamilTitle || "";
+        document.getElementById("form-category").value = p.categorySlug || "";
+        document.getElementById("form-price").value = p.price || "";
+        document.getElementById("form-orig-price").value = p.originalPrice || "";
+        document.getElementById("form-desc").value = p.description || "";
+        document.getElementById("form-features").value = p.features ? p.features.join("\n") : "";
+        document.getElementById("form-material").value = p.material || "Pure Bell Brass";
+        document.getElementById("form-weight").value = p.weight || "";
+        document.getElementById("form-height").value = p.height || "";
+        document.getElementById("form-tag").value = p.tag || "";
+        document.getElementById("form-instock").checked = Boolean(p.inStock);
+
+        uploadedImageBase64 = p.image || "";
+        if (uploadedImageBase64) {
+          document.getElementById("drop-zone-img").src = uploadedImageBase64;
+          document.getElementById("drop-zone-filename").innerText = uploadedImageBase64.slice(0, 30) + "...";
+          document.getElementById("drop-zone-placeholder").classList.add("hidden");
+          document.getElementById("drop-zone-preview").classList.remove("hidden");
+        }
+      }
+      updateLivePreview();
+    }
+
+    function closeProductModal() {
+      const modal = document.getElementById("product-modal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    function openCategoryModal() {
+      document.getElementById("category-modal").classList.remove("hidden");
+      document.getElementById("category-modal").classList.add("flex");
+    }
+
+    function closeCategoryModal() {
+      document.getElementById("category-modal").classList.add("hidden");
+      document.getElementById("category-modal").classList.remove("flex");
+    }
+
+    // Canvas Studio White Background Processor
+    function processImageToWhiteStudioCanvas(file, callback) {
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const img = new Image();
+        img.onload = function() {
+          const targetSize = 1000;
+          const offCanvas = document.createElement("canvas");
+          const offCtx = offCanvas.getContext("2d");
+          
+          let w = img.width;
+          let h = img.height;
+          // Scale down if oversized for quick processing
+          const maxDim = 1200;
+          if (Math.max(w, h) > maxDim) {
+            const sc = maxDim / Math.max(w, h);
+            w = Math.round(w * sc);
+            h = Math.round(h * sc);
+          }
+          offCanvas.width = w;
+          offCanvas.height = h;
+          offCtx.drawImage(img, 0, 0, w, h);
+
+          const imgData = offCtx.getImageData(0, 0, w, h);
+          const data = imgData.data;
+
+          // Sample perimeter pixels to identify background color
+          let rSum = 0, gSum = 0, bSum = 0, count = 0;
+          for (let x = 0; x < w; x += Math.max(1, Math.floor(w / 25))) {
+            let idxTop = (0 * w + x) * 4;
+            rSum += data[idxTop]; gSum += data[idxTop+1]; bSum += data[idxTop+2]; count++;
+            let idxBot = ((h - 1) * w + x) * 4;
+            rSum += data[idxBot]; gSum += data[idxBot+1]; bSum += data[idxBot+2]; count++;
+          }
+          for (let y = 0; y < h; y += Math.max(1, Math.floor(h / 25))) {
+            let idxLeft = (y * w + 0) * 4;
+            rSum += data[idxLeft]; gSum += data[idxLeft+1]; bSum += data[idxLeft+2]; count++;
+            let idxRight = (y * w + (w - 1)) * 4;
+            rSum += data[idxRight]; gSum += data[idxRight+1]; bSum += data[idxRight+2]; count++;
+          }
+
+          const bgR = rSum / count;
+          const bgG = gSum / count;
+          const bgB = bSum / count;
+          const threshold = 46;
+
+          let minX = w, minY = h, maxX = 0, maxY = 0;
+
+          for (let i = 0; i < data.length; i += 4) {
+            const r = data[i];
+            const g = data[i+1];
+            const b = data[i+2];
+            const dist = Math.sqrt((r - bgR)**2 + (g - bgG)**2 + (b - bgB)**2);
+
+            if (dist < threshold) {
+              data[i+3] = dist > threshold * 0.75 ? Math.floor(((dist - threshold * 0.75) / (threshold * 0.25)) * 255) : 0;
+            } else {
+              const px = (i / 4) % w;
+              const py = Math.floor((i / 4) / w);
+              if (px < minX) minX = px;
+              if (px > maxX) maxX = px;
+              if (py < minY) minY = py;
+              if (py > maxY) maxY = py;
+            }
+          }
+
+          offCtx.putImageData(imgData, 0, 0);
+
+          const fgW = Math.max(20, maxX - minX);
+          const fgH = Math.max(20, maxY - minY);
+
+          // Render onto 1000x1000 square pure white studio canvas
+          const finalCanvas = document.createElement("canvas");
+          finalCanvas.width = targetSize;
+          finalCanvas.height = targetSize;
+          const finalCtx = finalCanvas.getContext("2d");
+
+          // Pure white background
+          finalCtx.fillStyle = "#ffffff";
+          finalCtx.fillRect(0, 0, targetSize, targetSize);
+
+          // Fit comfortably (approx 82% scale)
+          const scale = Math.min((targetSize * 0.82) / fgW, (targetSize * 0.82) / fgH);
+          const drawW = Math.round(fgW * scale);
+          const drawH = Math.round(fgH * scale);
+          const drawX = Math.round((targetSize - drawW) / 2);
+          const drawY = Math.round((targetSize - drawH) / 2 + 10);
+
+          // Option 1: Clean Studio White – Crisp Soft Contact Shadows
+          // Layer 1: Soft diffused ambient shadow
+          const shadowW1 = Math.round(drawW * 0.78);
+          const shadowH1 = Math.max(18, Math.round(drawH * 0.08));
+          const shadowX = targetSize / 2;
+          const shadowY1 = drawY + drawH - 4;
+
+          finalCtx.save();
+          finalCtx.translate(shadowX, shadowY1);
+          finalCtx.scale(1, shadowH1 / shadowW1);
+          const grad1 = finalCtx.createRadialGradient(0, 0, shadowW1 * 0.1, 0, 0, shadowW1 * 0.5);
+          grad1.addColorStop(0, "rgba(35, 35, 35, 0.20)");
+          grad1.addColorStop(0.6, "rgba(35, 35, 35, 0.06)");
+          grad1.addColorStop(1, "rgba(255, 255, 255, 0)");
+          finalCtx.fillStyle = grad1;
+          finalCtx.beginPath();
+          finalCtx.arc(0, 0, shadowW1 * 0.5, 0, Math.PI * 2);
+          finalCtx.fill();
+          finalCtx.restore();
+
+          // Layer 2: Tight crisp contact occlusion core at the base
+          const shadowW2 = Math.round(drawW * 0.58);
+          const shadowH2 = Math.max(8, Math.round(drawH * 0.035));
+          const shadowY2 = drawY + drawH - 3;
+          finalCtx.save();
+          finalCtx.translate(shadowX, shadowY2);
+          finalCtx.scale(1, shadowH2 / shadowW2);
+          const grad2 = finalCtx.createRadialGradient(0, 0, shadowW2 * 0.05, 0, 0, shadowW2 * 0.5);
+          grad2.addColorStop(0, "rgba(15, 15, 15, 0.35)");
+          grad2.addColorStop(0.7, "rgba(25, 25, 25, 0.08)");
+          grad2.addColorStop(1, "rgba(255, 255, 255, 0)");
+          finalCtx.fillStyle = grad2;
+          finalCtx.beginPath();
+          finalCtx.arc(0, 0, shadowW2 * 0.5, 0, Math.PI * 2);
+          finalCtx.fill();
+          finalCtx.restore();
+
+          // Draw isolated subject
+          finalCtx.drawImage(offCanvas, minX, minY, fgW, fgH, drawX, drawY, drawW, drawH);
+
+          const resultUrl = finalCanvas.toDataURL("image/jpeg", 0.95);
+          callback(resultUrl);
+        };
+        img.src = evt.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // File selection
+    function handleFileSelect(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const autoWhite = document.getElementById("auto-white-bg") ? document.getElementById("auto-white-bg").checked : true;
+
+      const applyImageToUI = (imgSrc, label) => {
+        uploadedImageBase64 = imgSrc;
+        document.getElementById("drop-zone-img").src = imgSrc;
+        document.getElementById("drop-zone-filename").innerText = label || file.name;
+        document.getElementById("drop-zone-placeholder").classList.add("hidden");
+        document.getElementById("drop-zone-preview").classList.remove("hidden");
+        document.getElementById("form-image-url").value = "";
+        updateLivePreview();
+      };
+
+      if (autoWhite) {
+        showToast("✨ Processing with Option 1: Clean Studio White (crisp soft contact shadows)...", "success");
+        processImageToWhiteStudioCanvas(file, async function(whiteDataUrl) {
+          applyImageToUI(whiteDataUrl, `✨ studio-white-${file.name}`);
+
+          // Also upload to server with white background conversion
+          try {
+            // First try uploading the processed white canvas dataUrl directly
+            const jsonRes = await fetch("/api/upload", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ dataUrl: whiteDataUrl, filename: file.name })
+            });
+            const d = await jsonRes.json();
+            if (d.success && d.url) {
+              uploadedImageBase64 = d.url;
+              showToast("✨ Option 1: Clean Studio White photo uploaded successfully!");
+            }
+          } catch {
+            // Static mode: whiteDataUrl is already active in uploadedImageBase64
+          }
+        });
+      } else {
+        const reader = new FileReader();
+        reader.onload = async function(evt) {
+          applyImageToUI(evt.target.result, file.name);
+
+          try {
+            const fd = new FormData();
+            fd.append("file", file);
+            fd.append("whiteBg", "false");
+            const res = await fetch("/api/upload", { method: "POST", body: fd });
+            const d = await res.json();
+            if (d.success && d.url) {
+              uploadedImageBase64 = d.url;
+              showToast("Raw image uploaded");
+            }
+          } catch {}
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function handleImageUrlInput() {
+      const val = document.getElementById("form-image-url").value.trim();
+      if (val) {
+        uploadedImageBase64 = val;
+        document.getElementById("drop-zone-img").src = val;
+        document.getElementById("drop-zone-filename").innerText = val;
+        document.getElementById("drop-zone-placeholder").classList.add("hidden");
+        document.getElementById("drop-zone-preview").classList.remove("hidden");
+      }
+      updateLivePreview();
+    }
+
+    // Live preview update
+    function updateLivePreview() {
+      const title = document.getElementById("form-title").value || "Sample Product Title";
+      const tamil = document.getElementById("form-tamil-title").value || "";
+      const price = document.getElementById("form-price").value || "7850";
+      const orig = document.getElementById("form-orig-price").value || "";
+      const desc = document.getElementById("form-desc").value || "Handcrafted traditional metalware description will appear here.";
+      const mat = document.getElementById("form-material").value || "Pure Bell Brass";
+      const tag = document.getElementById("form-tag").value || "New Arrival";
+      const inStock = document.getElementById("form-instock").checked;
+
+      const selCat = document.getElementById("form-category");
+      const catText = selCat.options[selCat.selectedIndex]?.text.split("(")[0].trim() || "Kuthu Vilakku";
+
+      document.getElementById("prev-title").innerText = title;
+      document.getElementById("prev-tamil").innerText = tamil;
+      document.getElementById("prev-price").innerText = "₹" + Number(price).toLocaleString("en-IN");
+      document.getElementById("prev-desc").innerText = desc;
+      document.getElementById("prev-mat").innerText = mat;
+      document.getElementById("prev-tag").innerText = tag;
+      document.getElementById("prev-cat").innerText = catText;
+
+      document.getElementById("prev-stock").innerText = inStock ? "● In Stock" : "○ Sold Out";
+      document.getElementById("prev-stock").className = inStock ? "text-emerald-700 font-bold" : "text-rose-700 font-bold";
+
+      const aiPromptEl = document.getElementById("ai-prompt-preview");
+      if (aiPromptEl) {
+        const itemLabel = title !== "Sample Product Title" ? title : "handcrafted Indian item";
+        aiPromptEl.innerText = `Clean Studio White – Standard e-commerce catalog look with crisp soft contact shadows; highly uniform across all categories (statues, brass lamps, cookware, furniture). Professional studio product photograph of ${itemLabel}, pure white background (#FFFFFF), crisp contact drop shadow.`;
+      }
+
+      if (uploadedImageBase64) {
+        document.getElementById("prev-img").src = uploadedImageBase64;
+      }
+
+      if (orig && Number(orig) > Number(price)) {
+        document.getElementById("prev-orig-price").innerText = "₹" + Number(orig).toLocaleString("en-IN");
+        document.getElementById("prev-orig-price").classList.remove("hidden");
+        const disc = Math.round(((Number(orig) - Number(price)) / Number(orig)) * 100);
+        document.getElementById("prev-discount").innerText = disc + "% OFF";
+        document.getElementById("prev-discount").classList.remove("hidden");
+      } else {
+        document.getElementById("prev-orig-price").classList.add("hidden");
+        document.getElementById("prev-discount").classList.add("hidden");
+      }
+    }
+
+    function copyAiImagePrompt() {
+      const title = document.getElementById("form-title").value.trim() || "handcrafted Indian brassware";
+      const prompt = `Clean Studio White – Standard e-commerce catalog look with crisp soft contact shadows; highly uniform across all categories (statues, brass lamps, cookware, furniture). Professional studio product photograph of ${title}, centered on pure white (#FFFFFF) background, crisp soft contact drop shadow underneath, even diffused studio softbox lighting, ultra-sharp craftsmanship, commercial 8k catalog photography.`;
+      navigator.clipboard.writeText(prompt);
+      showToast("📋 Option 1 AI Prompt copied to clipboard!");
+    }
+
+    // Save product
+    async function handleSaveProduct(e) {
+      e.preventDefault();
+
+      const editId = document.getElementById("form-edit-id").value;
+      const title = document.getElementById("form-title").value.trim();
+      const tamilTitle = document.getElementById("form-tamil-title").value.trim();
+      const selCat = document.getElementById("form-category");
+      const categorySlug = selCat.value;
+      const category = selCat.options[selCat.selectedIndex]?.text || "General";
+      const price = Number(document.getElementById("form-price").value);
+      const origPrice = Number(document.getElementById("form-orig-price").value) || Math.round(price * 1.15);
+      const desc = document.getElementById("form-desc").value.trim();
+      const featuresRaw = document.getElementById("form-features").value.trim();
+      const material = document.getElementById("form-material").value.trim() || "Pure Bell Brass";
+      const weight = document.getElementById("form-weight").value.trim();
+      const height = document.getElementById("form-height").value.trim();
+      const tag = document.getElementById("form-tag").value.trim() || "New Arrival";
+      const inStock = document.getElementById("form-instock").checked;
+
+      if (!uploadedImageBase64) {
+        showToast("Please upload an image for the product", true);
+        return;
+      }
+
+      const features = featuresRaw ? featuresRaw.split("\n").map(f => f.trim()).filter(Boolean) : ["100% Traditional Handcrafted Purity"];
+      const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+
+      const productPayload = {
+        id: editId || ("JV-" + Math.floor(1000 + Math.random() * 9000)),
+        slug: slug,
+        title,
+        tamilTitle: tamilTitle || title,
+        category,
+        categorySlug,
+        price,
+        originalPrice: origPrice,
+        image: uploadedImageBase64,
+        description: desc,
+        tamilDescription: desc,
+        features,
+        material,
+        weight,
+        height,
+        tag,
+        inStock,
+        origin: "Madurai Artisan Guild",
+        rating: 5,
+        reviewCount: 1
+      };
+
+      // Try API first
+      let apiSaved = false;
+      try {
+        const endpoint = "/api/products";
+        const method = editId ? "PUT" : "POST";
+        const res = await fetch(endpoint, {
+          method,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(productPayload)
+        });
+        const resData = await res.json();
+        if (resData.success) {
+          apiSaved = true;
+        }
+      } catch {}
+
+      // Update in local state & localStorage
+      if (editId) {
+        const idx = allProducts.findIndex(p => p.id === editId);
+        if (idx !== -1) allProducts[idx] = productPayload;
+      } else {
+        allProducts.unshift(productPayload);
+      }
+
+      localStorage.setItem("jayavel_admin_products", JSON.stringify(allProducts));
+      closeProductModal();
+      renderProductsTable();
+      renderCategoriesPills();
+      updateStats();
+      showToast(editId ? "Product updated successfully!" : "Product published successfully!");
+    }
+
+    function editProduct(id) {
+      openProductModal('edit', id);
+    }
+
+    async function deleteProduct(id) {
+      if (!confirm("Are you sure you want to delete this product?")) return;
+
+      try {
+        await fetch(`/api/products?id=${id}`, { method: "DELETE" });
+      } catch {}
+
+      allProducts = allProducts.filter(p => p.id !== id);
+      localStorage.setItem("jayavel_admin_products", JSON.stringify(allProducts));
+      renderProductsTable();
+      renderCategoriesPills();
+      updateStats();
+      showToast("Product deleted successfully");
+    }
+
+    async function toggleStock(id) {
+      const p = allProducts.find(item => item.id === id);
+      if (!p) return;
+      p.inStock = !p.inStock;
+
+      try {
+        await fetch("/api/products", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id, inStock: p.inStock })
+        });
+      } catch {}
+
+      localStorage.setItem("jayavel_admin_products", JSON.stringify(allProducts));
+      renderProductsTable();
+      updateStats();
+      showToast(`${p.title} marked as ${p.inStock ? 'In Stock' : 'Out of Stock'}`);
+    }
+
+    // Create Category
+    async function handleCreateCategory(e) {
+      e.preventDefault();
+      const name = document.getElementById("new-cat-name").value.trim();
+      if (!name) return;
+      const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+
+      const newCat = { name, slug, count: 0 };
+      allCategories.push(newCat);
+
+      // Save custom cats to localStorage
+      const customCats = allCategories.filter(c => !DEFAULT_CATEGORIES.some(dc => dc.slug === c.slug));
+      localStorage.setItem("jayavel_custom_categories", JSON.stringify(customCats));
+
+      // Try API
+      try {
+        await fetch("/api/categories", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, slug })
+        });
+      } catch {}
+
+      document.getElementById("new-cat-name").value = "";
+      closeCategoryModal();
+      populateCategoryDropdown();
+      renderCategoriesPills();
+      updateStats();
+      showToast(`Category "${name}" created!`);
+    }
+  </script>
+</body>
+</html>

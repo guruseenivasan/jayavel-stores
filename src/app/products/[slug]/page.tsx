@@ -1,6 +1,8 @@
 import { Suspense } from "react";
-import { PRODUCTS, getProductBySlug } from "@/data/products";
+import { PRODUCTS, getProductBySlug, Product } from "@/data/products";
 import ProductDetailContent from "./ProductDetailContent";
+import fs from "fs/promises";
+import path from "path";
 
 export function generateStaticParams() {
   return PRODUCTS.map((product) => ({
@@ -8,9 +10,23 @@ export function generateStaticParams() {
   }));
 }
 
+async function getDynamicProduct(slug: string): Promise<Product | undefined> {
+  const fromMemory = getProductBySlug(slug);
+  if (fromMemory) return fromMemory;
+
+  try {
+    const filePath = path.join(process.cwd(), "src", "data", "products.json");
+    const raw = await fs.readFile(filePath, "utf-8");
+    const all: Product[] = JSON.parse(raw);
+    return all.find((p) => p.slug === slug);
+  } catch {
+    return undefined;
+  }
+}
+
 async function ProductDetailLoader({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = getProductBySlug(slug) || PRODUCTS[0];
+  const product = (await getDynamicProduct(slug)) || PRODUCTS[0];
   return <ProductDetailContent product={product} />;
 }
 

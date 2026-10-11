@@ -77,11 +77,11 @@ export default function ProductDetailContent({ product }: { product: Product }) 
           {/* Left Column: Image Gallery */}
           <div className="lg:col-span-7 flex flex-col gap-6">
             <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-[#e5e2e1]">
-              <div className="relative w-full aspect-[4/5] bg-[#f6f3f2] rounded-lg overflow-hidden flex items-center justify-center">
+              <div className="relative w-full aspect-square bg-white rounded-lg overflow-hidden flex items-center justify-center p-4 border border-[#f0eded]">
                 <img
                   src={images[selectedImage] || product.image}
                   alt={product.title}
-                  className="w-full h-full object-cover transition-all duration-300"
+                  className="w-full h-full object-contain transition-all duration-300"
                 />
                 <div className="absolute top-4 left-4 flex flex-col gap-1 items-start">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/90 backdrop-blur-md text-[#48061d] text-[10px] font-bold rounded shadow-sm">
@@ -102,13 +102,13 @@ export default function ProductDetailContent({ product }: { product: Product }) 
                       key={img}
                       type="button"
                       onClick={() => setSelectedImage(idx)}
-                      className={`relative rounded-lg overflow-hidden aspect-square bg-[#f0eded] border-2 transition-all ${
+                      className={`relative rounded-lg overflow-hidden aspect-square bg-white p-1 border-2 transition-all ${
                         selectedImage === idx
                           ? "border-[#48061d] scale-105 shadow-sm"
-                          : "border-transparent opacity-70 hover:opacity-100"
+                          : "border-gray-200 opacity-70 hover:opacity-100"
                       }`}
                     >
-                      <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+                      <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-contain" />
                     </button>
                   ))}
                 </div>
