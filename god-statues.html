@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
@@ -48,7 +48,18 @@
           <span class="material-symbols-outlined text-[15px] text-[#eec067] shrink-0">location_on</span>
           <span class="truncate max-w-[200px] sm:max-w-none">East Masi Street, Madurai • 1978 முதல்</span>
         </div>
-        <div class="flex items-center gap-4 shrink-0">
+                <div class="flex items-center justify-center shrink-0">
+          <div class="inline-flex items-center bg-[#48061d] border border-[#ffdea4]/50 rounded-full p-0.5 shadow-sm text-[11px] font-bold">
+            <button type="button" onclick="setAppLanguage('en')" id="btn-lang-en" class="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#ffdea4] text-[#48061d] transition-all cursor-pointer font-bold shadow-sm">
+              <span class="material-symbols-outlined text-[13px]">translate</span>
+              <span>ENG</span>
+            </button>
+            <button type="button" onclick="setAppLanguage('ta')" id="btn-lang-ta" class="flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[#ffdea4]/80 hover:text-white transition-all cursor-pointer font-medium">
+              <span>தமிழ்</span>
+            </button>
+          </div>
+        </div>
+<div class="flex items-center gap-4 shrink-0">
           <a class="flex items-center gap-1 text-[#ffdea4] hover:text-white transition-colors" href="tel:+919894198916">
             <span class="material-symbols-outlined text-[14px]">call</span>
             <span class="hidden sm:inline">+91 98941 98916</span>
@@ -66,7 +77,7 @@
     <div class="bg-white border-b border-[#e5e2e1]">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <div class="h-20 flex items-center justify-between gap-4">
-          <a href="index.html" class="flex items-center gap-3 shrink-0">
+          <a href="./" class="flex items-center gap-3 shrink-0">
             <img alt="Jayavel Stores Logo" class="h-11 w-11 rounded-full object-contain border border-[#ffdea4]/60 shadow" src="logo.png"/>
             <div class="flex flex-col">
               <span class="font-serif text-lg sm:text-xl tracking-wide text-[#48061d] font-bold leading-tight">JAYAVEL STORES</span>
@@ -92,14 +103,14 @@
 
         <!-- Desktop Nav Links -->
         <nav class="hidden md:flex items-center gap-1 pb-2.5 overflow-x-auto text-xs font-semibold">
-          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] rounded transition-colors whitespace-nowrap" href="index.html">Home</a>
-          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] rounded transition-colors whitespace-nowrap" href="product-catalogue.html">Product Catalogue</a>
-          <a class="px-3 py-1.5 bg-[#48061d] text-white rounded transition-colors whitespace-nowrap" href="god-statues.html">God Statues</a>
-          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] rounded transition-colors whitespace-nowrap" href="brass-bronze-vessels.html">Brass & Bronze Vessels</a>
-          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] rounded transition-colors whitespace-nowrap" href="kitchen-items.html">Kitchen & Silver Items</a>
-          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] rounded transition-colors whitespace-nowrap" href="furniture.html">Heritage Furniture</a>
-          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] rounded transition-colors whitespace-nowrap" href="heritage-story.html">About Our Heritage</a>
-          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] rounded transition-colors whitespace-nowrap" href="visit-store.html">Visit Store & Contact</a>
+          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] rounded transition-colors whitespace-nowrap" href="./">Home</a>
+          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] rounded transition-colors whitespace-nowrap" href="product-catalogue">Product Catalogue</a>
+          <a class="px-3 py-1.5 bg-[#48061d] text-white rounded transition-colors whitespace-nowrap" href="god-statues">God Statues</a>
+          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] rounded transition-colors whitespace-nowrap" href="brass-bronze-vessels">Brass & Bronze Vessels</a>
+          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] rounded transition-colors whitespace-nowrap" href="kitchen-items">Kitchen & Silver Items</a>
+          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] rounded transition-colors whitespace-nowrap" href="furniture">Heritage Furniture</a>
+          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] rounded transition-colors whitespace-nowrap" href="heritage-story">About Our Heritage</a>
+          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] rounded transition-colors whitespace-nowrap" href="visit-store">Visit Store & Contact</a>
         </nav>
       </div>
     </div>
@@ -109,12 +120,12 @@
     <!-- Breadcrumb Header -->
     <div class="w-full bg-[#f6f3f2] py-3 px-4 sm:px-6 border-b border-[#e5e2e1]">
       <div class="max-w-7xl mx-auto flex items-center flex-wrap gap-2 text-xs sm:text-sm text-[#534245]">
-        <a href="index.html" class="hover:text-[#48061d] flex items-center gap-1 transition-colors font-medium">
+        <a href="./" class="hover:text-[#48061d] flex items-center gap-1 transition-colors font-medium">
           <span class="material-symbols-outlined text-[16px]">home</span>
           <span>Home</span>
         </a>
         <span class="text-[#867275]">/</span>
-        <a href="product-catalogue.html" class="hover:text-[#48061d] transition-colors font-medium">
+        <a href="product-catalogue" class="hover:text-[#48061d] transition-colors font-medium">
           Product Catalogue
         </a>
         <span class="text-[#867275]">/</span>
@@ -232,7 +243,15 @@
           </div>
         </article>
 
-        <!-- 2. Lakshmi Ganesha Saraswati Trio -->
+        <!-- ========================================================
+     COMMENTED OUT STATUES (as requested by user):
+     1. Shri Lakshmi Ganesha Saraswati Brass Trio Ensemble
+     2. Auspicious Padmasana Goddess Lakshmi Brass Idol - 9 Inches
+     3. Majestic Lord Murugan (Dandayudhapani) with Sacred Vel & Peacock - 18 Inches
+     4. Consecrated Swami Ayyappan with Royal Thiruvachi Arch - 15 Inches
+     ========================================================
+
+[-- 2. Lakshmi Ganesha Saraswati Trio --]
         <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-category="trio" data-title="Shri Lakshmi Ganesha Saraswati Brass Trio Ensemble பீடம் லட்சுமி கணபதி சரஸ்வதி">
           <div class="relative bg-[#f6f3f2] aspect-[3/4] overflow-hidden">
             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="lakshmi-ganesh-saraswati.jpg" alt="Lakshmi Ganesha Saraswati Brass Set"/>
@@ -273,7 +292,7 @@
           </div>
         </article>
 
-        <!-- 3. Padmasana Gajalakshmi Idol -->
+        [-- 3. Padmasana Gajalakshmi Idol --]
         <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-category="lakshmi" data-title="Auspicious Padmasana Goddess Lakshmi Brass Idol கஜலட்சுமி சிலை மகாலட்சுமி">
           <div class="relative bg-[#f6f3f2] aspect-[3/4] overflow-hidden">
             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="lakshmi-statue.jpg" alt="Padmasana Goddess Lakshmi Idol"/>
@@ -314,7 +333,7 @@
           </div>
         </article>
 
-        <!-- 4. Lord Murugan Statue -->
+        [-- 4. Lord Murugan Statue --]
         <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-category="murugan" data-title="Majestic Lord Murugan Dandayudhapani Sacred Vel Peacock தண்டாயுதபாணி முருகன் சிலை வேல் மயில்">
           <div class="relative bg-[#f6f3f2] aspect-[3/4] overflow-hidden">
             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="murugan-statue.jpg" alt="Lord Murugan with Vel and Peacock"/>
@@ -355,7 +374,7 @@
           </div>
         </article>
 
-        <!-- 5. Swami Ayyappan with Thiruvachi -->
+        [-- 5. Swami Ayyappan with Thiruvachi --]
         <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-category="ayyappan" data-title="Consecrated Swami Ayyappan with Royal Thiruvachi Arch Brass Idol சுவாமி ஐயப்பன் திருவாச்சி சிலை">
           <div class="relative bg-[#f6f3f2] aspect-[3/4] overflow-hidden">
             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="ayyappan-statue.jpg" alt="Swami Ayyappan with Thiruvachi Arch"/>
@@ -395,6 +414,8 @@
             </div>
           </div>
         </article>
+
+     END COMMENTED OUT STATUES -->
 
       </div>
     </section>
@@ -526,13 +547,33 @@
       if (countEl) countEl.textContent = visibleCount;
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
       const q = urlParams.get('q');
       if (q) {
         handleSearch(q);
       }
+      if (window.syncProductsIntoGrid) {
+        syncProductsIntoGrid({
+          gridId: 'products-grid',
+          countId: 'item-count',
+          filter: function(p) {
+            var cat = (p.categorySlug || p.category || '').toLowerCase();
+            return cat.indexOf('statue') !== -1 || cat.indexOf('vigraham') !== -1 || cat.indexOf('god') !== -1;
+          }
+        });
+      }
     });
   </script>
+  <style>
+  .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame { display: none !important; }
+  body { top: 0px !important; }
+  #google_translate_element { display: none !important; }
+  .goog-tooltip, .goog-tooltip:hover { display: none !important; }
+  .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
+  </style>
+  <div id="google_translate_element" style="display:none;"></div>
+  <script src="site-sync.js"></script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

@@ -1,0 +1,31 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /jayavel-stores/
+
+    # Map API routes to PHP scripts
+    RewriteRule ^api/products/?$ api/products/index.php [L,QSA]
+    RewriteRule ^api/categories/?$ api/categories/index.php [L,QSA]
+    RewriteRule ^api/upload/?$ api/upload/index.php [L,QSA]
+
+    # 1. Redirect external index.html to site root
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+jayavel-stores/index\.html [NC]
+    RewriteRule ^ /jayavel-stores/ [R=301,L]
+
+    # 2. Redirect external requests with .html to clean URLs
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+jayavel-stores/([^/\s?]+)\.html [NC]
+    RewriteRule ^ %1 [R=301,L]
+
+    # 3. Strip trailing slash from non-directories to avoid path issues
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ $1 [R=301,L]
+
+    # 4. Product details alias
+    RewriteRule ^product/?$ product-details.html [L,QSA]
+    RewriteRule ^product-details/?$ product-details.html [L,QSA]
+
+    # 5. Internally serve .html file for extensionless URLs
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^([^/]+)$ $1.html [L,QSA]
+</IfModule>

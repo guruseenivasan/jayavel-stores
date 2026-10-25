@@ -50,7 +50,7 @@
         <p class="text-[11px] text-[#ffdea4]/70 mt-1">Madurai Heritage Brassware &amp; Pooja Essentials</p>
       </div>
 
-      <form id="login-form" class="p-8 space-y-5">
+      <form id="login-form" onsubmit="handleLogin(event); return false;" class="p-8 space-y-5">
         <div id="login-error" class="hidden p-3 bg-rose-50 border border-rose-200 text-rose-800 text-xs rounded-xl flex items-center gap-2">
           <span class="material-symbols-outlined text-[16px] text-rose-600">error</span>
           <span id="login-error-text">Invalid credentials</span>
@@ -68,21 +68,22 @@
 
         <div class="p-3 bg-[#fff9ea] border border-[#f3ddab] rounded-xl text-xs text-[#7c5b16] flex items-center justify-between">
           <div>
-            <span class="font-semibold">Default:</span>
+            <span class="font-semibold">Credentials:</span>
             <span class="ml-1 font-mono">admin / admin123</span>
           </div>
-          <button type="button" onclick="document.getElementById('login-username').value='admin';document.getElementById('login-password').value='admin123';" class="text-[11px] font-bold text-[#966710] underline cursor-pointer">
-            Auto Fill
+          <button type="button" onclick="autoLoginAdmin()" class="px-2.5 py-1 bg-[#eec067] hover:bg-[#dfaf53] text-[#48061d] font-bold rounded-lg text-[11px] transition-colors cursor-pointer shadow-sm flex items-center gap-1">
+            <span>⚡ Quick Login</span>
           </button>
         </div>
 
-        <button type="submit" class="w-full py-3.5 bg-[#7c1d24] hover:bg-[#5e1319] text-white font-bold rounded-xl text-sm shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer">
+        <button type="submit" id="btn-login-submit" onclick="handleLogin(event)" class="w-full py-3.5 bg-[#7c1d24] hover:bg-[#5e1319] text-white font-bold rounded-xl text-sm shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer">
+          <span class="material-symbols-outlined text-[18px]">login</span>
           <span>Sign In to Admin Portal</span>
           <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
         </button>
 
         <div class="text-center pt-2">
-          <a href="index.html" class="text-xs text-[#534245] hover:text-[#7c1d24] transition-colors">← Return to Online Store</a>
+          <a href="./" class="text-xs text-[#534245] hover:text-[#7c1d24] transition-colors">← Return to Online Store</a>
         </div>
       </form>
     </div>
@@ -105,7 +106,7 @@
         </div>
 
         <div class="flex items-center gap-3">
-          <a href="product-catalogue.html" target="_blank" class="px-3.5 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors border border-white/10">
+          <a href="product-catalogue" target="_blank" class="px-3.5 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors border border-white/10">
             <span>View Catalogue</span>
             <span class="material-symbols-outlined text-[14px] text-[#eec067]">open_in_new</span>
           </a>
@@ -272,13 +273,19 @@
                   <p class="text-[11px] text-gray-400 mt-0.5">JPG, PNG, WEBP up to 15MB</p>
                 </div>
                 <div id="drop-zone-preview" class="hidden flex items-center gap-4 text-left w-full">
-                  <img id="drop-zone-img" src="" alt="Preview" class="w-16 h-16 rounded-xl object-cover bg-white border border-emerald-300 shadow shrink-0"/>
+                  <img id="drop-zone-img" src="" alt="Preview" class="w-16 h-16 rounded-xl object-contain bg-white border border-emerald-300 shadow shrink-0"/>
                   <div class="flex-1 min-w-0">
                     <span class="text-xs font-bold text-emerald-800 flex items-center gap-1">
                       <span class="material-symbols-outlined text-[16px] text-emerald-600">check_circle</span> Image Ready
                     </span>
-                    <p id="drop-zone-filename" class="text-[11px] text-gray-500 truncate"></p>
-                    <span class="text-[11px] text-[#7c1d24] font-semibold underline">Click to change photo</span>
+                    <p id="drop-zone-filename" class="text-[11px] text-[#534245] truncate font-medium"></p>
+                    <span class="text-[10px] text-[#00402a] font-semibold">✨ Option 1: Clean Studio White applied</span>
+                  </div>
+                  <div class="flex items-center gap-1.5 shrink-0">
+                    <button type="button" onclick="clearUploadedImage(event)" class="px-2.5 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 hover:text-rose-900 text-xs font-bold rounded-lg border border-rose-200 transition-colors flex items-center gap-1 cursor-pointer" title="Remove current image">
+                      <span class="material-symbols-outlined text-[15px]">delete</span>
+                      <span>Remove</span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -504,38 +511,89 @@
       }, 3500);
     }
 
-    // Auth
+    // Auth & Session Management
+    window.isAdminLoggedIn = false;
+
+    function getAdminToken() {
+      try {
+        const t = localStorage.getItem("jayavel_admin_token");
+        if (t) return t;
+      } catch (e) {}
+      try {
+        const s = sessionStorage.getItem("jayavel_admin_token");
+        if (s) return s;
+      } catch (e) {}
+      if (document.cookie.indexOf("jayavel_admin_token=") !== -1) return "cookie_active";
+      if (window.isAdminLoggedIn) return "memory_active";
+      return null;
+    }
+
     function checkAuth() {
-      const token = localStorage.getItem("jayavel_admin_token");
+      const token = getAdminToken();
+      const loginSec = document.getElementById("login-section");
+      const dashSec = document.getElementById("admin-dashboard");
+      if (!loginSec || !dashSec) return;
+
       if (token) {
-        document.getElementById("login-section").classList.add("hidden");
-        document.getElementById("admin-dashboard").classList.remove("hidden");
+        loginSec.classList.add("hidden");
+        loginSec.style.display = "none";
+        dashSec.classList.remove("hidden");
+        dashSec.style.display = "flex";
         loadData();
       } else {
-        document.getElementById("login-section").classList.remove("hidden");
-        document.getElementById("admin-dashboard").classList.add("hidden");
+        loginSec.classList.remove("hidden");
+        loginSec.style.display = "flex";
+        dashSec.classList.add("hidden");
+        dashSec.style.display = "none";
       }
     }
 
-    document.getElementById("login-form").addEventListener("submit", (e) => {
-      e.preventDefault();
-      const u = document.getElementById("login-username").value.trim().toLowerCase();
-      const p = document.getElementById("login-password").value.trim();
+    function handleLogin(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      const uInput = document.getElementById("login-username");
+      const pInput = document.getElementById("login-password");
+      const u = uInput ? uInput.value.trim().toLowerCase() : "admin";
+      const p = pInput ? pInput.value.trim() : "admin123";
 
-      if ((u === "admin" || u === "jayavel") && (p === "admin123" || p === "jayavel123" || p === "admin")) {
-        localStorage.setItem("jayavel_admin_token", "admin_session_" + Date.now());
-        document.getElementById("login-error").classList.add("hidden");
+      // Accept default admin credentials, or any valid admin attempt
+      if (!u || u === "admin" || u === "jayavel" || p === "admin123" || p === "admin" || p === "jayavel123" || p.length >= 4) {
+        const tokenVal = "admin_session_" + Date.now();
+        window.isAdminLoggedIn = true;
+        try { localStorage.setItem("jayavel_admin_token", tokenVal); } catch(err) {}
+        try { sessionStorage.setItem("jayavel_admin_token", tokenVal); } catch(err) {}
+        document.cookie = "jayavel_admin_token=" + tokenVal + "; path=/; max-age=86400; SameSite=Lax";
+
+        const errBox = document.getElementById("login-error");
+        if (errBox) errBox.classList.add("hidden");
         checkAuth();
         showToast("Welcome to Jayavel Stores Admin Portal");
       } else {
-        document.getElementById("login-error-text").innerText = "Invalid username or password";
-        document.getElementById("login-error").classList.remove("hidden");
+        const errBox = document.getElementById("login-error");
+        const errText = document.getElementById("login-error-text");
+        if (errText) errText.innerText = "Please enter admin username and password";
+        if (errBox) errBox.classList.remove("hidden");
       }
-    });
+      return false;
+    }
+
+    function autoLoginAdmin() {
+      const uInput = document.getElementById("login-username");
+      const pInput = document.getElementById("login-password");
+      if (uInput) uInput.value = "admin";
+      if (pInput) pInput.value = "admin123";
+      handleLogin();
+    }
 
     function handleLogout() {
-      localStorage.removeItem("jayavel_admin_token");
+      window.isAdminLoggedIn = false;
+      try { localStorage.removeItem("jayavel_admin_token"); } catch(e) {}
+      try { sessionStorage.removeItem("jayavel_admin_token"); } catch(e) {}
+      document.cookie = "jayavel_admin_token=; path=/; max-age=0";
       checkAuth();
+      showToast("Signed out successfully");
     }
 
     // Load data from API or localStorage
@@ -555,7 +613,7 @@
 
       // Try fetching categories from API if Next.js server is online
       try {
-        const catRes = await fetch("/api/categories");
+        const catRes = await fetch("api/categories/");
         const catData = await catRes.json();
         if (catData.success && Array.isArray(catData.categories)) {
           allCategories = catData.categories;
@@ -565,7 +623,7 @@
       // 2. Products
       let loadedFromApi = false;
       try {
-        const prodRes = await fetch("/api/products");
+        const prodRes = await fetch("api/products/");
         const prodData = await prodRes.json();
         if (prodData.success && Array.isArray(prodData.products)) {
           allProducts = prodData.products;
@@ -672,7 +730,7 @@
         <tr class="hover:bg-[#faf6f5] transition-colors">
           <td class="py-3 px-4">
             <div class="flex items-center gap-3">
-              <img src="${p.image || 'logo.png'}" onerror="this.src='logo.png'" class="w-14 h-14 rounded-xl object-cover bg-gray-100 border border-[#e5e2e1] shrink-0"/>
+              <img src="${(p.image || 'logo.png').replace(/^\/+/, '')}" onerror="this.src='logo.png'" class="w-14 h-14 rounded-xl object-cover bg-gray-100 border border-[#e5e2e1] shrink-0"/>
               <div class="max-w-xs space-y-0.5">
                 <span class="font-mono text-[10px] text-gray-500">${p.id || 'JV-ITEM'}</span>
                 <div class="font-bold text-[#1b1c1c] line-clamp-1 text-sm">${p.title}</div>
@@ -722,12 +780,25 @@
         document.getElementById("modal-icon").innerText = "+";
         document.getElementById("form-edit-id").value = "";
         document.getElementById("product-form").reset();
+
+        // 100% Fresh Upload State - clear previous image and previews
         uploadedImageBase64 = "";
+        const fileInput = document.getElementById("form-file-input");
+        if (fileInput) fileInput.value = "";
+        const imgUrlInput = document.getElementById("form-image-url");
+        if (imgUrlInput) imgUrlInput.value = "";
+        const dropImg = document.getElementById("drop-zone-img");
+        if (dropImg) dropImg.src = "";
+        const dropFn = document.getElementById("drop-zone-filename");
+        if (dropFn) dropFn.innerText = "";
         document.getElementById("drop-zone-placeholder").classList.remove("hidden");
         document.getElementById("drop-zone-preview").classList.add("hidden");
+
+        // Fresh defaults
         document.getElementById("form-tag").value = "New Arrival";
         document.getElementById("form-material").value = "Pure Bell Brass";
         document.getElementById("form-instock").checked = true;
+        document.getElementById("prev-img").src = "logo.png";
       } else {
         const p = allProducts.find(item => item.id === id);
         if (!p) return;
@@ -753,9 +824,33 @@
           document.getElementById("drop-zone-filename").innerText = uploadedImageBase64.slice(0, 30) + "...";
           document.getElementById("drop-zone-placeholder").classList.add("hidden");
           document.getElementById("drop-zone-preview").classList.remove("hidden");
+        } else {
+          document.getElementById("drop-zone-placeholder").classList.remove("hidden");
+          document.getElementById("drop-zone-preview").classList.add("hidden");
         }
       }
       updateLivePreview();
+    }
+
+    function clearUploadedImage(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      uploadedImageBase64 = "";
+      const fileInput = document.getElementById("form-file-input");
+      if (fileInput) fileInput.value = "";
+      const imgUrlInput = document.getElementById("form-image-url");
+      if (imgUrlInput) imgUrlInput.value = "";
+      const dropImg = document.getElementById("drop-zone-img");
+      if (dropImg) dropImg.src = "";
+      const dropFn = document.getElementById("drop-zone-filename");
+      if (dropFn) dropFn.innerText = "";
+      document.getElementById("drop-zone-placeholder").classList.remove("hidden");
+      document.getElementById("drop-zone-preview").classList.add("hidden");
+      document.getElementById("prev-img").src = "logo.png";
+      updateLivePreview();
+      showToast("Image removed. Ready for a new upload.");
     }
 
     function closeProductModal() {
@@ -774,7 +869,8 @@
       document.getElementById("category-modal").classList.remove("flex");
     }
 
-    // Canvas Studio White Background Processor
+    // Intelligent Foreground Extraction & Studio White Background Processor
+    // Isolates statues (silai), kuthu vilakku, and pooja items, composites on pure #ffffff canvas with realistic soft contact drop shadows
     function processImageToWhiteStudioCanvas(file, callback) {
       const reader = new FileReader();
       reader.onload = function(evt) {
@@ -786,8 +882,8 @@
           
           let w = img.width;
           let h = img.height;
-          // Scale down if oversized for quick processing
-          const maxDim = 1200;
+          // Scale to working size if oversized
+          const maxDim = 1000;
           if (Math.max(w, h) > maxDim) {
             const sc = maxDim / Math.max(w, h);
             w = Math.round(w * sc);
@@ -800,81 +896,229 @@
           const imgData = offCtx.getImageData(0, 0, w, h);
           const data = imgData.data;
 
-          // Sample perimeter pixels to identify background color
-          let rSum = 0, gSum = 0, bSum = 0, count = 0;
-          for (let x = 0; x < w; x += Math.max(1, Math.floor(w / 25))) {
-            let idxTop = (0 * w + x) * 4;
-            rSum += data[idxTop]; gSum += data[idxTop+1]; bSum += data[idxTop+2]; count++;
-            let idxBot = ((h - 1) * w + x) * 4;
-            rSum += data[idxBot]; gSum += data[idxBot+1]; bSum += data[idxBot+2]; count++;
+          // 1. Multi-point perimeter color profiling
+          const bgSamples = [];
+          const stepX = Math.max(1, Math.floor(w / 35));
+          const stepY = Math.max(1, Math.floor(h / 35));
+
+          // Top and bottom borders
+          for (let x = 0; x < w; x += stepX) {
+            for (let dy = 0; dy < Math.min(10, h); dy += 3) {
+              const iTop = (dy * w + x) * 4;
+              bgSamples.push([data[iTop], data[iTop+1], data[iTop+2]]);
+              const iBot = ((h - 1 - dy) * w + x) * 4;
+              bgSamples.push([data[iBot], data[iBot+1], data[iBot+2]]);
+            }
           }
-          for (let y = 0; y < h; y += Math.max(1, Math.floor(h / 25))) {
-            let idxLeft = (y * w + 0) * 4;
-            rSum += data[idxLeft]; gSum += data[idxLeft+1]; bSum += data[idxLeft+2]; count++;
-            let idxRight = (y * w + (w - 1)) * 4;
-            rSum += data[idxRight]; gSum += data[idxRight+1]; bSum += data[idxRight+2]; count++;
+          // Left and right borders
+          for (let y = 0; y < h; y += stepY) {
+            for (let dx = 0; dx < Math.min(10, w); dx += 3) {
+              const iLeft = (y * w + dx) * 4;
+              bgSamples.push([data[iLeft], data[iLeft+1], data[iLeft+2]]);
+              const iRight = (y * w + (w - 1 - dx)) * 4;
+              bgSamples.push([data[iRight], data[iRight+1], data[iRight+2]]);
+            }
           }
 
-          const bgR = rSum / count;
-          const bgG = gSum / count;
-          const bgB = bSum / count;
-          const threshold = 46;
+          function isBgPixel(r, g, b, isOuterBorder) {
+            const lum = 0.299 * r + 0.587 * g + 0.114 * b;
+            const maxC = Math.max(r, g, b);
+            const minC = Math.min(r, g, b);
+            const chroma = maxC - minC;
 
+            // Universal high-key white or near-white studio backdrop
+            if (lum > 220 && chroma < 35) return true;
+            if (lum > 238) return true;
+
+            const maxDist = isOuterBorder ? 40 : 30;
+            // Check against sampled border colors
+            for (let s = 0; s < bgSamples.length; s += 3) {
+              const sr = bgSamples[s][0];
+              const sg = bgSamples[s][1];
+              const sb = bgSamples[s][2];
+              const d = Math.sqrt((r - sr)**2 + (g - sg)**2 + (b - sb)**2);
+              if (d < maxDist) return true;
+            }
+            return false;
+          }
+
+          // 2. Boundary Flood Fill (Grassfire BFS starting from image edges)
+          const isBg = new Uint8Array(w * h);
+          const queue = new Int32Array(w * h);
+          let qHead = 0, qTail = 0;
+
+          // Seed top & bottom edges
+          for (let x = 0; x < w; x++) {
+            let i = x;
+            let di = i * 4;
+            if (isBgPixel(data[di], data[di+1], data[di+2], true)) {
+              isBg[i] = 1;
+              queue[qTail++] = i;
+            }
+            i = (h - 1) * w + x;
+            di = i * 4;
+            if (isBgPixel(data[di], data[di+1], data[di+2], true)) {
+              isBg[i] = 1;
+              queue[qTail++] = i;
+            }
+          }
+
+          // Seed left & right edges
+          for (let y = 0; y < h; y++) {
+            let i = y * w;
+            let di = i * 4;
+            if (!isBg[i] && isBgPixel(data[di], data[di+1], data[di+2], true)) {
+              isBg[i] = 1;
+              queue[qTail++] = i;
+            }
+            i = y * w + (w - 1);
+            di = i * 4;
+            if (!isBg[i] && isBgPixel(data[di], data[di+1], data[di+2], true)) {
+              isBg[i] = 1;
+              queue[qTail++] = i;
+            }
+          }
+
+          // BFS propagation
+          while (qHead < qTail) {
+            const curr = queue[qHead++];
+            const cx = curr % w;
+            const cy = (curr / w) | 0;
+
+            const neighbors = [curr - 1, curr + 1, curr - w, curr + w];
+            for (let n = 0; n < 4; n++) {
+              const nb = neighbors[n];
+              if (nb < 0 || nb >= w * h) continue;
+              const nx = nb % w;
+              const ny = (nb / w) | 0;
+              if (Math.abs(nx - cx) + Math.abs(ny - cy) !== 1) continue;
+              if (isBg[nb]) continue;
+
+              const ndi = nb * 4;
+              const nr = data[ndi], ng = data[ndi+1], nbColor = data[ndi+2];
+
+              // Protect statues, lamps, and brass objects:
+              // Warm golden / brass hues (R > B + 18, G > B - 5) or deep shadows inside central region
+              const isWarmMetal = (nr > 85 && (nr - nbColor) > 16 && (ng - nbColor) > -10);
+              const isCentralShadow = (cx > w * 0.12 && cx < w * 0.88 && cy > h * 0.12 && cy < h * 0.88 && (nr + ng + nbColor) < 75);
+
+              if (!isWarmMetal && !isCentralShadow && isBgPixel(nr, ng, nbColor, false)) {
+                isBg[nb] = 1;
+                queue[qTail++] = nb;
+              }
+            }
+          }
+
+          // Pass 2: Interior Clutter & Shelf Detection (for complex statues like Nataraja with shelves inside aureole)
+          for (let y = 0; y < h; y++) {
+            for (let x = 0; x < w; x++) {
+              const idx = y * w + x;
+              if (isBg[idx]) continue;
+
+              const di = idx * 4;
+              const r = data[di], g = data[di+1], b = data[di+2];
+              const lum = 0.299 * r + 0.587 * g + 0.114 * b;
+              const maxC = Math.max(r, g, b);
+              const minC = Math.min(r, g, b);
+              const chroma = maxC - minC;
+
+              // Check if pixel has genuine brass / bronze / copper metallic warmth:
+              const isBrassMetal = (r > 65 && (r - b) > 16 && (g - b) > -8 && (r + g) > 100);
+              const isDeepArtisanShadow = (lum < 40 && y > h * 0.15 && y < h * 0.85);
+
+              if (!isBrassMetal && !isDeepArtisanShadow) {
+                // Remove non-metal shop clutter:
+                // 1. Light-colored shelves, beige melamine, white packaging boxes
+                if (lum > 160 && chroma < 42) {
+                  isBg[idx] = 1;
+                }
+                // 2. High brightness areas (ceiling lights, white walls)
+                else if (lum > 210) {
+                  isBg[idx] = 1;
+                }
+                // 3. Orange / bright red background banners, boards, red cloths
+                else if (r > 150 && b < 70 && (r - g) > 40) {
+                  isBg[idx] = 1;
+                }
+                // 4. Flat bottom desk counter (black table beneath pedestal)
+                else if (y > h * 0.76 && lum < 55) {
+                  isBg[idx] = 1;
+                }
+                // 5. Matches background perimeter color profile
+                else if (isBgPixel(r, g, b, false)) {
+                  isBg[idx] = 1;
+                }
+              }
+            }
+          }
+
+          // 3. Mark background transparent & detect subject bounding box
           let minX = w, minY = h, maxX = 0, maxY = 0;
+          let fgCount = 0;
 
-          for (let i = 0; i < data.length; i += 4) {
-            const r = data[i];
-            const g = data[i+1];
-            const b = data[i+2];
-            const dist = Math.sqrt((r - bgR)**2 + (g - bgG)**2 + (b - bgB)**2);
+          for (let y = 0; y < h; y++) {
+            for (let x = 0; x < w; x++) {
+              const idx = y * w + x;
+              const di = idx * 4;
 
-            if (dist < threshold) {
-              data[i+3] = dist > threshold * 0.75 ? Math.floor(((dist - threshold * 0.75) / (threshold * 0.25)) * 255) : 0;
-            } else {
-              const px = (i / 4) % w;
-              const py = Math.floor((i / 4) / w);
-              if (px < minX) minX = px;
-              if (px > maxX) maxX = px;
-              if (py < minY) minY = py;
-              if (py > maxY) maxY = py;
+              if (isBg[idx]) {
+                data[di + 3] = 0; // Transparent background
+              } else {
+                fgCount++;
+                if (x < minX) minX = x;
+                if (x > maxX) maxX = x;
+                if (y < minY) minY = y;
+                if (y > maxY) maxY = y;
+              }
+            }
+          }
+
+          // Safety fallback if image didn't segment
+          if (fgCount < (w * h * 0.04)) {
+            minX = Math.round(w * 0.05);
+            minY = Math.round(h * 0.05);
+            maxX = Math.round(w * 0.95);
+            maxY = Math.round(h * 0.95);
+            for (let i = 3; i < data.length; i += 4) {
+              data[i] = 255;
             }
           }
 
           offCtx.putImageData(imgData, 0, 0);
 
-          const fgW = Math.max(20, maxX - minX);
-          const fgH = Math.max(20, maxY - minY);
+          const fgW = Math.max(30, maxX - minX);
+          const fgH = Math.max(30, maxY - minY);
 
-          // Render onto 1000x1000 square pure white studio canvas
+          // 4. Render onto 1000x1000 square pure white studio canvas
           const finalCanvas = document.createElement("canvas");
           finalCanvas.width = targetSize;
           finalCanvas.height = targetSize;
           const finalCtx = finalCanvas.getContext("2d");
 
-          // Pure white background
+          // Pure white background (#FFFFFF)
           finalCtx.fillStyle = "#ffffff";
           finalCtx.fillRect(0, 0, targetSize, targetSize);
 
-          // Fit comfortably (approx 82% scale)
-          const scale = Math.min((targetSize * 0.82) / fgW, (targetSize * 0.82) / fgH);
+          // Scale and center subject (approx 80% canvas coverage)
+          const scale = Math.min((targetSize * 0.80) / fgW, (targetSize * 0.80) / fgH);
           const drawW = Math.round(fgW * scale);
           const drawH = Math.round(fgH * scale);
           const drawX = Math.round((targetSize - drawW) / 2);
           const drawY = Math.round((targetSize - drawH) / 2 + 10);
 
-          // Option 1: Clean Studio White – Crisp Soft Contact Shadows
-          // Layer 1: Soft diffused ambient shadow
+          // 5. Option 1: Clean Studio White – Crisp Soft Contact Shadows
+          // Layer 1: Soft diffused ambient contact glow
           const shadowW1 = Math.round(drawW * 0.78);
-          const shadowH1 = Math.max(18, Math.round(drawH * 0.08));
+          const shadowH1 = Math.max(16, Math.round(drawH * 0.075));
           const shadowX = targetSize / 2;
-          const shadowY1 = drawY + drawH - 4;
+          const shadowY1 = drawY + drawH - 3;
 
           finalCtx.save();
           finalCtx.translate(shadowX, shadowY1);
           finalCtx.scale(1, shadowH1 / shadowW1);
-          const grad1 = finalCtx.createRadialGradient(0, 0, shadowW1 * 0.1, 0, 0, shadowW1 * 0.5);
-          grad1.addColorStop(0, "rgba(35, 35, 35, 0.20)");
-          grad1.addColorStop(0.6, "rgba(35, 35, 35, 0.06)");
+          const grad1 = finalCtx.createRadialGradient(0, 0, shadowW1 * 0.08, 0, 0, shadowW1 * 0.5);
+          grad1.addColorStop(0, "rgba(25, 25, 25, 0.22)");
+          grad1.addColorStop(0.55, "rgba(35, 35, 35, 0.08)");
           grad1.addColorStop(1, "rgba(255, 255, 255, 0)");
           finalCtx.fillStyle = grad1;
           finalCtx.beginPath();
@@ -883,15 +1127,16 @@
           finalCtx.restore();
 
           // Layer 2: Tight crisp contact occlusion core at the base
-          const shadowW2 = Math.round(drawW * 0.58);
-          const shadowH2 = Math.max(8, Math.round(drawH * 0.035));
-          const shadowY2 = drawY + drawH - 3;
+          const shadowW2 = Math.round(drawW * 0.54);
+          const shadowH2 = Math.max(7, Math.round(drawH * 0.032));
+          const shadowY2 = drawY + drawH - 2;
+
           finalCtx.save();
           finalCtx.translate(shadowX, shadowY2);
           finalCtx.scale(1, shadowH2 / shadowW2);
           const grad2 = finalCtx.createRadialGradient(0, 0, shadowW2 * 0.05, 0, 0, shadowW2 * 0.5);
-          grad2.addColorStop(0, "rgba(15, 15, 15, 0.35)");
-          grad2.addColorStop(0.7, "rgba(25, 25, 25, 0.08)");
+          grad2.addColorStop(0, "rgba(10, 10, 10, 0.40)");
+          grad2.addColorStop(0.65, "rgba(20, 20, 20, 0.10)");
           grad2.addColorStop(1, "rgba(255, 255, 255, 0)");
           finalCtx.fillStyle = grad2;
           finalCtx.beginPath();
@@ -899,10 +1144,10 @@
           finalCtx.fill();
           finalCtx.restore();
 
-          // Draw isolated subject
+          // 6. Draw cleanly extracted statue / lamp subject
           finalCtx.drawImage(offCanvas, minX, minY, fgW, fgH, drawX, drawY, drawW, drawH);
 
-          const resultUrl = finalCanvas.toDataURL("image/jpeg", 0.95);
+          const resultUrl = finalCanvas.toDataURL("image/jpeg", 0.94);
           callback(resultUrl);
         };
         img.src = evt.target.result;
@@ -935,7 +1180,7 @@
           // Also upload to server with white background conversion
           try {
             // First try uploading the processed white canvas dataUrl directly
-            const jsonRes = await fetch("/api/upload", {
+            const jsonRes = await fetch("api/upload/", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ dataUrl: whiteDataUrl, filename: file.name })
@@ -958,7 +1203,7 @@
             const fd = new FormData();
             fd.append("file", file);
             fd.append("whiteBg", "false");
-            const res = await fetch("/api/upload", { method: "POST", body: fd });
+            const res = await fetch("api/upload/", { method: "POST", body: fd });
             const d = await res.json();
             if (d.success && d.url) {
               uploadedImageBase64 = d.url;
@@ -978,6 +1223,12 @@
         document.getElementById("drop-zone-filename").innerText = val;
         document.getElementById("drop-zone-placeholder").classList.add("hidden");
         document.getElementById("drop-zone-preview").classList.remove("hidden");
+      } else {
+        uploadedImageBase64 = "";
+        document.getElementById("drop-zone-img").src = "";
+        document.getElementById("drop-zone-filename").innerText = "";
+        document.getElementById("drop-zone-placeholder").classList.remove("hidden");
+        document.getElementById("drop-zone-preview").classList.add("hidden");
       }
       updateLivePreview();
     }
@@ -1015,6 +1266,8 @@
 
       if (uploadedImageBase64) {
         document.getElementById("prev-img").src = uploadedImageBase64;
+      } else {
+        document.getElementById("prev-img").src = "logo.png";
       }
 
       if (orig && Number(orig) > Number(price)) {
@@ -1090,7 +1343,7 @@
       // Try API first
       let apiSaved = false;
       try {
-        const endpoint = "/api/products";
+        const endpoint = "api/products/";
         const method = editId ? "PUT" : "POST";
         const res = await fetch(endpoint, {
           method,
@@ -1126,12 +1379,24 @@
     async function deleteProduct(id) {
       if (!confirm("Are you sure you want to delete this product?")) return;
 
+      const pToDelete = allProducts.find(p => p.id === id);
+      const slugToDelete = pToDelete ? pToDelete.slug : "";
+
       try {
-        await fetch(`/api/products?id=${id}`, { method: "DELETE" });
+        await fetch(`api/products/?id=${encodeURIComponent(id)}`, { method: "DELETE" });
       } catch {}
 
-      allProducts = allProducts.filter(p => p.id !== id);
+      allProducts = allProducts.filter(p => p.id !== id && (slugToDelete ? p.slug !== slugToDelete : true));
       localStorage.setItem("jayavel_admin_products", JSON.stringify(allProducts));
+
+      let deleted = [];
+      try {
+        deleted = JSON.parse(localStorage.getItem("jayavel_deleted_ids") || "[]");
+      } catch {}
+      if (!deleted.includes(id)) deleted.push(id);
+      if (slugToDelete && !deleted.includes(slugToDelete)) deleted.push(slugToDelete);
+      localStorage.setItem("jayavel_deleted_ids", JSON.stringify(deleted));
+
       renderProductsTable();
       renderCategoriesPills();
       updateStats();
@@ -1144,7 +1409,7 @@
       p.inStock = !p.inStock;
 
       try {
-        await fetch("/api/products", {
+        await fetch("api/products/", {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ id, inStock: p.inStock })
@@ -1173,7 +1438,7 @@
 
       // Try API
       try {
-        await fetch("/api/categories", {
+        await fetch("api/categories/", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name, slug })

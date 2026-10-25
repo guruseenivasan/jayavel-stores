@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
@@ -48,7 +48,18 @@
           <span class="material-symbols-outlined text-[15px] text-[#eec067] shrink-0">location_on</span>
           <span class="truncate max-w-[200px] sm:max-w-none">East Masi Street, Madurai • 1978 முதல்</span>
         </div>
-        <div class="flex items-center gap-4 shrink-0">
+                <div class="flex items-center justify-center shrink-0">
+          <div class="inline-flex items-center bg-[#48061d] border border-[#ffdea4]/50 rounded-full p-0.5 shadow-sm text-[11px] font-bold">
+            <button type="button" onclick="setAppLanguage('en')" id="btn-lang-en" class="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#ffdea4] text-[#48061d] transition-all cursor-pointer font-bold shadow-sm">
+              <span class="material-symbols-outlined text-[13px]">translate</span>
+              <span>ENG</span>
+            </button>
+            <button type="button" onclick="setAppLanguage('ta')" id="btn-lang-ta" class="flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[#ffdea4]/80 hover:text-white transition-all cursor-pointer font-medium">
+              <span>தமிழ்</span>
+            </button>
+          </div>
+        </div>
+<div class="flex items-center gap-4 shrink-0">
           <a class="flex items-center gap-1 text-[#ffdea4] hover:text-white transition-colors" href="tel:+919894198916">
             <span class="material-symbols-outlined text-[14px]">call</span>
             <span class="hidden sm:inline">+91 98941 98916</span>
@@ -67,7 +78,7 @@
     <div class="border-b border-[#e5e2e1] bg-[#fcf9f8]">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <div class="h-20 flex items-center justify-between gap-4">
-          <a href="index.html" class="flex items-center gap-3 shrink-0">
+          <a href="./" class="flex items-center gap-3 shrink-0">
             <img alt="Jayavel Stores Logo" class="h-10 w-10 sm:h-12 sm:w-12 rounded-full object-contain shadow-md border-2 border-[#7b5902]/40 bg-white" src="logo.png"/>
             <div class="flex flex-col">
               <span class="font-serif text-lg sm:text-xl font-bold tracking-wide text-[#48061d] leading-tight">JAYAVEL STORES</span>
@@ -92,14 +103,14 @@
 
         <!-- Navigation Links -->
         <nav class="hidden md:flex items-center gap-1 pb-2.5 overflow-x-auto text-xs font-semibold">
-          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] transition-colors whitespace-nowrap rounded" href="index.html">Home</a>
-          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] transition-colors whitespace-nowrap rounded" href="product-catalogue.html">Product Catalogue</a>
-          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] transition-colors whitespace-nowrap rounded" href="god-statues.html">God Statues</a>
-          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] transition-colors whitespace-nowrap rounded" href="brass-bronze-vessels.html">Brass & Bronze Vessels</a>
-          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] transition-colors whitespace-nowrap rounded" href="kitchen-items.html">Kitchen & Silver Items</a>
-          <a class="px-3 py-1.5 bg-[#651d32] text-white whitespace-nowrap rounded" href="furniture.html">Heritage Furniture</a>
-          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] transition-colors whitespace-nowrap rounded" href="heritage-story.html">About Our Heritage</a>
-          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] transition-colors whitespace-nowrap rounded" href="visit-store.html">Visit Store & Contact</a>
+          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] transition-colors whitespace-nowrap rounded" href="./">Home</a>
+          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] transition-colors whitespace-nowrap rounded" href="product-catalogue">Product Catalogue</a>
+          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] transition-colors whitespace-nowrap rounded" href="god-statues">God Statues</a>
+          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] transition-colors whitespace-nowrap rounded" href="brass-bronze-vessels">Brass & Bronze Vessels</a>
+          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] transition-colors whitespace-nowrap rounded" href="kitchen-items">Kitchen & Silver Items</a>
+          <a class="px-3 py-1.5 bg-[#651d32] text-white whitespace-nowrap rounded" href="furniture">Heritage Furniture</a>
+          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] transition-colors whitespace-nowrap rounded" href="heritage-story">About Our Heritage</a>
+          <a class="px-3 py-1.5 text-[#534245] hover:text-[#1b1c1c] hover:bg-[#f0eded] transition-colors whitespace-nowrap rounded" href="visit-store">Visit Store & Contact</a>
         </nav>
       </div>
     </div>
@@ -110,7 +121,7 @@
     <!-- Breadcrumb -->
     <div class="w-full bg-[#f6f3f2] py-3.5 px-4 sm:px-6 border-b border-[#e5e2e1]">
       <div class="max-w-7xl mx-auto flex items-center gap-2 text-xs sm:text-sm text-[#534245]">
-        <a href="index.html" class="hover:text-[#48061d] flex items-center gap-1 font-medium">
+        <a href="./" class="hover:text-[#48061d] flex items-center gap-1 font-medium">
           <span class="material-symbols-outlined text-[16px]">home</span>
           <span>Home</span>
         </a>
@@ -192,9 +203,11 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="products-grid">
 
         <!-- 1. King Size Cot Bed -->
-        <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-category="bed" data-title="Solid Teakwood King Size Cot Bed with Floral Headboard தேக்கு மர கிங் சைஸ் கட்டில்">
+        <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-product-id="JV-8105" data-slug="teakwood-king-cot-bed" data-category="bed" data-title="Solid Teakwood King Size Cot Bed with Floral Headboard தேக்கு மர கிங் சைஸ் கட்டில்">
           <div class="relative bg-[#f6f3f2] aspect-[4/5] overflow-hidden">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="teakwood-king-cot-bed.jpg" alt="Solid Teakwood King Size Cot Bed"/>
+            <a href="product-details?id=JV-8105" class="block w-full h-full cursor-pointer">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="products/teakwood-king-cot-bed-white.jpg" alt="Solid Teakwood King Size Cot Bed"/>
+            </a>
             <span class="absolute top-3 left-3 bg-[#48061d] text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
               Bridal Seer Essential
             </span>
@@ -204,10 +217,10 @@
           </div>
           <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
             <div>
-              <div class="flex items-center justify-between text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
-                <span>Madurai Master Woodcraft</span>
-                <span class="text-[#00402a] flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block"></span> In-Stock
+              <div class="flex items-center justify-between gap-2 min-w-0 text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
+                <span class="truncate min-w-0 mr-2">Madurai Master Woodcraft</span>
+                <span class="whitespace-nowrap shrink-0 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#e7f7ed] text-[#00402a]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block shrink-0"></span> In-Stock
                 </span>
               </div>
               <h3 class="font-serif text-base font-bold text-[#48061d] group-hover:text-[#7b5902] transition-colors mt-1">
@@ -240,7 +253,9 @@
         <!-- 2. Chettinad Teakwood Sofa Set -->
         <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-category="sofa" data-title="Chettinad Carved Teakwood (3+1+1) Luxury Sofa Set செட்டிநாடு தேக்கு மர சோபா செட்">
           <div class="relative bg-[#f6f3f2] aspect-[4/5] overflow-hidden">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="chettinad-carved-teakwood-sofa-set.jpg" alt="Chettinad Carved Teakwood Sofa Set"/>
+            <a href="product-details?id=JV-8105" class="block w-full h-full cursor-pointer">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="products/chettinad-carved-teakwood-sofa-set-white.jpg" alt="Chettinad Carved Teakwood Sofa Set"/>
+            </a>
             <span class="absolute top-3 left-3 bg-[#48061d] text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
               Living Room Royalty
             </span>
@@ -250,10 +265,10 @@
           </div>
           <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
             <div>
-              <div class="flex items-center justify-between text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
-                <span>Karaikudi Master Guild</span>
-                <span class="text-[#00402a] flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block"></span> In-Stock
+              <div class="flex items-center justify-between gap-2 min-w-0 text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
+                <span class="truncate min-w-0 mr-2">Karaikudi Master Guild</span>
+                <span class="whitespace-nowrap shrink-0 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#e7f7ed] text-[#00402a]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block shrink-0"></span> In-Stock
                 </span>
               </div>
               <h3 class="font-serif text-base font-bold text-[#48061d] group-hover:text-[#7b5902] transition-colors mt-1">
@@ -284,9 +299,11 @@
         </article>
 
         <!-- 3. Solid Teakwood 3-Door Bero -->
-        <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-category="bero" data-title="Solid Teakwood 3-Door Heritage Wardrobe Bero with Locker & Mirror தேக்கு மர 3-கதவு பீரோ">
+        <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-product-id="JV-8107" data-slug="solid-teakwood-3-door-bero" data-category="bero" data-title="Solid Teakwood 3-Door Heritage Wardrobe Bero with Locker & Mirror தேக்கு மர 3-கதவு பீரோ">
           <div class="relative bg-[#f6f3f2] aspect-[4/5] overflow-hidden">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="solid-teakwood-3-door-bero.jpg" alt="Solid Teakwood 3-Door Heritage Bero"/>
+            <a href="product-details?id=JV-8107" class="block w-full h-full cursor-pointer">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="products/solid-teakwood-3-door-bero-white.jpg" alt="Solid Teakwood 3-Door Heritage Bero"/>
+            </a>
             <span class="absolute top-3 left-3 bg-[#48061d] text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
               Wedding Wardrobe
             </span>
@@ -296,10 +313,10 @@
           </div>
           <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
             <div>
-              <div class="flex items-center justify-between text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
-                <span>Madurai Woodcraft</span>
-                <span class="text-[#00402a] flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block"></span> In-Stock
+              <div class="flex items-center justify-between gap-2 min-w-0 text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
+                <span class="truncate min-w-0 mr-2">Madurai Woodcraft</span>
+                <span class="whitespace-nowrap shrink-0 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#e7f7ed] text-[#00402a]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block shrink-0"></span> In-Stock
                 </span>
               </div>
               <h3 class="font-serif text-base font-bold text-[#48061d] group-hover:text-[#7b5902] transition-colors mt-1">
@@ -330,9 +347,11 @@
         </article>
 
         <!-- 4. Gas Stove Table Stand -->
-        <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-category="stove" data-title="Heavy Kitchen Gas Stove Table Stand with Cylinder Bay கேஸ் ஸ்டவ் அடுப்பு மேடை பாத்திர ஸ்டாண்டு">
+        <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-product-id="JV-8108" data-slug="teakwood-steel-gas-stove-table-stand" data-category="stove" data-title="Heavy Kitchen Gas Stove Table Stand with Cylinder Bay கேஸ் ஸ்டவ் அடுப்பு மேடை பாத்திர ஸ்டாண்டு">
           <div class="relative bg-[#f6f3f2] aspect-[4/5] overflow-hidden">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="teakwood-steel-gas-stove-table-stand.jpg" alt="Heavy Kitchen Gas Stove Table Stand"/>
+            <a href="product-details?id=JV-8107" class="block w-full h-full cursor-pointer">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="products/teakwood-steel-gas-stove-table-stand-white.jpg" alt="Heavy Kitchen Gas Stove Table Stand"/>
+            </a>
             <span class="absolute top-3 left-3 bg-[#48061d] text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
               Kitchen Utility
             </span>
@@ -342,10 +361,10 @@
           </div>
           <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
             <div>
-              <div class="flex items-center justify-between text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
-                <span>Salem & Madurai Kitchen Craft</span>
-                <span class="text-[#00402a] flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block"></span> In-Stock
+              <div class="flex items-center justify-between gap-2 min-w-0 text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
+                <span class="truncate min-w-0 mr-2">Salem & Madurai Kitchen Craft</span>
+                <span class="whitespace-nowrap shrink-0 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#e7f7ed] text-[#00402a]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block shrink-0"></span> In-Stock
                 </span>
               </div>
               <h3 class="font-serif text-base font-bold text-[#48061d] group-hover:text-[#7b5902] transition-colors mt-1">
@@ -376,9 +395,11 @@
         </article>
 
         <!-- 5. Salem Steel Wedding Bero -->
-        <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-category="bero" data-title="Salem Premium Heavy-Gauge Steel Wedding Bero சேலம் ஹெவி கேஜ் ஸ்டீல் கல்யாண பீரோ">
+        <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-product-id="JV-8109" data-slug="salem-heavy-steel-wedding-bero" data-category="bero" data-title="Salem Premium Heavy-Gauge Steel Wedding Bero சேலம் ஹெவி கேஜ் ஸ்டீல் கல்யாண பீரோ">
           <div class="relative bg-[#f6f3f2] aspect-[4/5] overflow-hidden">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="salem-heavy-steel-wedding-bero.jpg" alt="Salem Heavy-Gauge Steel Wedding Bero"/>
+            <a href="product-details?id=JV-8108" class="block w-full h-full cursor-pointer">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="products/salem-heavy-steel-wedding-bero-white.jpg" alt="Salem Heavy-Gauge Steel Wedding Bero"/>
+            </a>
             <span class="absolute top-3 left-3 bg-[#48061d] text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
               Salem Heavy Steel
             </span>
@@ -388,10 +409,10 @@
           </div>
           <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
             <div>
-              <div class="flex items-center justify-between text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
-                <span>Salem Steel Fabrication</span>
-                <span class="text-[#00402a] flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block"></span> In-Stock
+              <div class="flex items-center justify-between gap-2 min-w-0 text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
+                <span class="truncate min-w-0 mr-2">Salem Steel Fabrication</span>
+                <span class="whitespace-nowrap shrink-0 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#e7f7ed] text-[#00402a]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block shrink-0"></span> In-Stock
                 </span>
               </div>
               <h3 class="font-serif text-base font-bold text-[#48061d] group-hover:text-[#7b5902] transition-colors mt-1">
@@ -424,7 +445,9 @@
         <!-- 6. Chettinad Oonjal Swing -->
         <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-category="oonjal" data-title="Chettinad Carved Teakwood Oonjal Swing செட்டிநாடு பாரம்பரிய தேக்கு மர ஊஞ்சல்">
           <div class="relative bg-[#f6f3f2] aspect-[4/5] overflow-hidden">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="chettinad-teakwood-oonjal-swing.jpg" alt="Chettinad Carved Teakwood Oonjal Swing"/>
+            <a href="product-details?id=JV-8108" class="block w-full h-full cursor-pointer">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="products/chettinad-teakwood-oonjal-swing-white.jpg" alt="Chettinad Carved Teakwood Oonjal Swing"/>
+            </a>
             <span class="absolute top-3 left-3 bg-[#48061d] text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
               Chettinad Heritage
             </span>
@@ -434,10 +457,10 @@
           </div>
           <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
             <div>
-              <div class="flex items-center justify-between text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
-                <span>Solid Burma Teak</span>
-                <span class="text-[#00402a] flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block"></span> In-Stock
+              <div class="flex items-center justify-between gap-2 min-w-0 text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
+                <span class="truncate min-w-0 mr-2">Solid Burma Teak</span>
+                <span class="whitespace-nowrap shrink-0 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#e7f7ed] text-[#00402a]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block shrink-0"></span> In-Stock
                 </span>
               </div>
               <h3 class="font-serif text-base font-bold text-[#48061d] group-hover:text-[#7b5902] transition-colors mt-1">
@@ -470,7 +493,9 @@
         <!-- 7. Teakwood Pooja Mandapam Shrine -->
         <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-category="mandapam" data-title="Grand Teakwood Pooja Mandapam Shrine கோவில் கோபுர பூஜை மண்டபம்">
           <div class="relative bg-[#f6f3f2] aspect-[4/5] overflow-hidden">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="teakwood-pooja-mandapam-shrine.jpg" alt="Grand Teakwood Pooja Mandapam Shrine"/>
+            <a href="product-details?id=JV-8109" class="block w-full h-full cursor-pointer">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="products/teakwood-pooja-mandapam-shrine-white.jpg" alt="Grand Teakwood Pooja Mandapam Shrine"/>
+            </a>
             <span class="absolute top-3 left-3 bg-[#48061d] text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
               Sacred Mandapam
             </span>
@@ -480,10 +505,10 @@
           </div>
           <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
             <div>
-              <div class="flex items-center justify-between text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
-                <span>Temple Gopuram Arch</span>
-                <span class="text-[#00402a] flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block"></span> In-Stock
+              <div class="flex items-center justify-between gap-2 min-w-0 text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
+                <span class="truncate min-w-0 mr-2">Temple Gopuram Arch</span>
+                <span class="whitespace-nowrap shrink-0 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#e7f7ed] text-[#00402a]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block shrink-0"></span> In-Stock
                 </span>
               </div>
               <h3 class="font-serif text-base font-bold text-[#48061d] group-hover:text-[#7b5902] transition-colors mt-1">
@@ -516,7 +541,9 @@
         <!-- 8. Teakwood Diwan -->
         <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-category="sofa" data-title="Brass Studded Heritage Teakwood Diwan பித்தளை வேலைப்பாடு தேக்கு மர திவான்">
           <div class="relative bg-[#f6f3f2] aspect-[4/5] overflow-hidden">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="brass-studded-teakwood-diwan.jpg" alt="Brass Studded Heritage Teakwood Diwan"/>
+            <a href="product-details?id=JV-8109" class="block w-full h-full cursor-pointer">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="products/brass-studded-teakwood-diwan-white.jpg" alt="Brass Studded Heritage Teakwood Diwan"/>
+            </a>
             <span class="absolute top-3 left-3 bg-[#48061d] text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
               Palace Diwan
             </span>
@@ -526,10 +553,10 @@
           </div>
           <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
             <div>
-              <div class="flex items-center justify-between text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
-                <span>Hand-Carved Bolsters</span>
-                <span class="text-[#00402a] flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block"></span> In-Stock
+              <div class="flex items-center justify-between gap-2 min-w-0 text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
+                <span class="truncate min-w-0 mr-2">Hand-Carved Bolsters</span>
+                <span class="whitespace-nowrap shrink-0 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#e7f7ed] text-[#00402a]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block shrink-0"></span> In-Stock
                 </span>
               </div>
               <h3 class="font-serif text-base font-bold text-[#48061d] group-hover:text-[#7b5902] transition-colors mt-1">
@@ -562,7 +589,7 @@
         <!-- 9. Teakwood Peedam & Uruli Stand -->
         <article class="product-item bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden border border-[#e5e2e1]" data-category="mandapam" data-title="Carved Teakwood Peedam Uruli Stand தேக்கு மர பீடம் உருளி ஸ்டாண்ட்">
           <div class="relative bg-[#f6f3f2] aspect-[4/5] overflow-hidden">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="carved-teakwood-peedam-uruli-stand.jpg" alt="Carved Teakwood Peedam Uruli Stand"/>
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="products/carved-teakwood-peedam-uruli-stand-white.jpg" alt="Carved Teakwood Peedam Uruli Stand"/>
             <span class="absolute top-3 left-3 bg-[#48061d] text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
               Pooja Peedam
             </span>
@@ -572,10 +599,10 @@
           </div>
           <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
             <div>
-              <div class="flex items-center justify-between text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
-                <span>Temple Asanam</span>
-                <span class="text-[#00402a] flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block"></span> In-Stock
+              <div class="flex items-center justify-between gap-2 min-w-0 text-[11px] font-bold text-[#7b5902] uppercase tracking-wider">
+                <span class="truncate min-w-0 mr-2">Temple Asanam</span>
+                <span class="whitespace-nowrap shrink-0 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#e7f7ed] text-[#00402a]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#00402a] inline-block shrink-0"></span> In-Stock
                 </span>
               </div>
               <h3 class="font-serif text-base font-bold text-[#48061d] group-hover:text-[#7b5902] transition-colors mt-1">
@@ -733,13 +760,33 @@
       if (countEl) countEl.textContent = visibleCount;
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
       const q = urlParams.get('q');
       if (q) {
         handleSearch(q);
       }
+      if (window.syncProductsIntoGrid) {
+        syncProductsIntoGrid({
+          gridId: 'products-grid',
+          countId: 'item-count',
+          filter: function(p) {
+            var cat = (p.categorySlug || p.category || '').toLowerCase();
+            return cat.indexOf('furniture') !== -1 || cat.indexOf('wood') !== -1 || cat.indexOf('cot') !== -1 || cat.indexOf('bero') !== -1 || cat.indexOf('sofa') !== -1;
+          }
+        });
+      }
     });
   </script>
+  <style>
+  .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame { display: none !important; }
+  body { top: 0px !important; }
+  #google_translate_element { display: none !important; }
+  .goog-tooltip, .goog-tooltip:hover { display: none !important; }
+  .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
+  </style>
+  <div id="google_translate_element" style="display:none;"></div>
+  <script src="site-sync.js"></script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
