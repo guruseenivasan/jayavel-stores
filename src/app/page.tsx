@@ -331,8 +331,8 @@ export default function HomePage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="rounded-2xl overflow-hidden shadow-md aspect-square bg-[#eae7e7]">
                 <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDScP6LUQXMySMYOc3E0BP7BcxrURKkxiWzb4_zKqa_U-9NW0jBNHNhH0a4wElUiiEJ9uBP7RH6I3F8Pyr0mbmXIExpsINRgFf-PP3G07crbgyDhz4g362F02WeT6nv1_FgfFzm0oKE5Nsk6R5sIuTux1kmxMisgSJZLF2G77rtPldgzCa4O3difw-hCcEuIdT4DTUgEjuIQXd8szPWOz-CdzHwhgB0xf8yy3V4hajEwQctxOl0E6aBbg"
-                  alt="Artisan casting bronze"
+                  src="/statues/nataraja_statue.jpg"
+                  alt="Handcrafted Sacred Lord Nataraja Brass Vigraham"
                   className="w-full h-full object-cover"
                 />
               </div>
