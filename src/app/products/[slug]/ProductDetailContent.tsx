@@ -448,7 +448,7 @@ export default function ProductDetailContent({ product }: { product: Product }) 
                 <div>
                   <Link href={`/products/${rel.slug}`} className="block aspect-square rounded-lg overflow-hidden bg-[#f0eded] mb-3">
                     <img
-                      src={rel.image}
+                      src={formatProductImageUrl(rel.image)} loading="lazy" onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/logo.png"; }}
                       alt={rel.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                     />

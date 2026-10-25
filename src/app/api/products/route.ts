@@ -214,8 +214,11 @@ export async function POST(request: NextRequest) {
       origin: origin?.trim() || "Madurai Heritage Workshop",
       rating: 5.0,
       reviewCount: 1,
-      image: image.trim(),
-      gallery: Array.isArray(gallery) && gallery.length > 0 ? gallery : [image.trim()],
+      image: ((image.trim().startsWith("http") || image.trim().startsWith("data:") || image.trim().startsWith("/")) ? image.trim() : "/" + image.trim()),
+      gallery: (Array.isArray(gallery) && gallery.length > 0 ? gallery : [image.trim()]).map((g: string) => {
+        const trimmed = (g || "").trim();
+        return (trimmed.startsWith("http") || trimmed.startsWith("data:") || trimmed.startsWith("/")) ? trimmed : "/" + trimmed;
+      }),
       description: description.trim(),
       tamilDescription: tamilDescription?.trim() || description.trim(),
       features: processedFeatures.length > 0 ? processedFeatures : [

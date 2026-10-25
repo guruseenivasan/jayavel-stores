@@ -103,7 +103,7 @@ export const PRODUCTS: Product[] = [
         "categorySlug": "pooja-statues",
         "price": 4999,
         "originalPrice": 5749,
-        "image": "uploads/white-1792932694-golden_brass_hanuman_statue_on_rock_base.jpg",
+        "image": "/uploads/white-1792932694-golden_brass_hanuman_statue_on_rock_base.jpg",
         "description": "Bring divine strength, courage, and devotion into your home with this beautifully crafted Antique Gold Brass Lord Hanuman Statue. Featuring Lord Hanuman in a standing pose, this traditional masterpiece showcases an intricately carved crown, detailed facial features, ornate jewelry, decorative garments, and a beautifully designed gada (mace).\n\nThe rich antique-gold finish highlights the fine engravings and traditional Indian craftsmanship, while the raised blessing hand symbolizes protection, peace, and positive energy. The detailed base adds grandeur, making this statue a wonderful addition to your home temple, pooja room, living room, or spiritual collection.",
         "tamilDescription": "Bring divine strength, courage, and devotion into your home with this beautifully crafted Antique Gold Brass Lord Hanuman Statue. Featuring Lord Hanuman in a standing pose, this traditional masterpiece showcases an intricately carved crown, detailed facial features, ornate jewelry, decorative garments, and a beautifully designed gada (mace).\n\nThe rich antique-gold finish highlights the fine engravings and traditional Indian craftsmanship, while the raised blessing hand symbolizes protection, peace, and positive energy. The detailed base adds grandeur, making this statue a wonderful addition to your home temple, pooja room, living room, or spiritual collection.",
         "features": [
@@ -133,7 +133,7 @@ export const PRODUCTS: Product[] = [
         "categorySlug": "pooja-statues",
         "price": 899,
         "originalPrice": 1034,
-        "image": "uploads/white-1792932603-ornate_brass_cow_and_calf_statue.jpg",
+        "image": "/uploads/white-1792932603-ornate_brass_cow_and_calf_statue.jpg",
         "description": "Bring home traditional Indian artistry and auspicious charm with this beautifully crafted Antique Gold Brass Cow and Calf Statue. Featuring a finely detailed mother cow with her calf, this elegant decorative piece showcases intricate engravings, traditional ornamental patterns, and a rich antique-gold finish.\n\nThe statue is elevated on a beautifully carved platform with decorative legs, adding a royal and traditional touch. Its timeless design makes it ideal for pooja rooms, home temples, living rooms, office spaces, and festive decorations.",
         "tamilDescription": "Bring home traditional Indian artistry and auspicious charm with this beautifully crafted Antique Gold Brass Cow and Calf Statue. Featuring a finely detailed mother cow with her calf, this elegant decorative piece showcases intricate engravings, traditional ornamental patterns, and a rich antique-gold finish.\n\nThe statue is elevated on a beautifully carved platform with decorative legs, adding a royal and traditional touch. Its timeless design makes it ideal for pooja rooms, home temples, living rooms, office spaces, and festive decorations.",
         "features": [
@@ -162,7 +162,7 @@ export const PRODUCTS: Product[] = [
         "categorySlug": "pooja-statues",
         "price": 600,
         "originalPrice": 690,
-        "image": "uploads/white-1792932399-antique_brass_hindu_deity_trio.jpg",
+        "image": "/uploads/white-1792932399-antique_brass_hindu_deity_trio.jpg",
         "description": "Bring divine blessings and traditional elegance to your home with this beautifully crafted antique-gold brass Hindu Trinity statue set featuring Goddess Lakshmi, Lord Ganesha, and Goddess Saraswati. Each deity is intricately detailed with traditional ornaments, expressive features, and finely carved patterns, seated gracefully on decorative lotus-style pedestals.\n\nThe elegant gold finish and ornate rectangular base make this statue set ideal for your pooja room, home temple, living room, or office. Perfect for daily worship, festive decorations, housewarming ceremonies, and auspicious gifting, this divine trio adds a timeless spiritual charm to any space.",
         "tamilDescription": "Bring divine blessings and traditional elegance to your home with this beautifully crafted antique-gold brass Hindu Trinity statue set featuring Goddess Lakshmi, Lord Ganesha, and Goddess Saraswati. Each deity is intricately detailed with traditional ornaments, expressive features, and finely carved patterns, seated gracefully on decorative lotus-style pedestals.\n\nThe elegant gold finish and ornate rectangular base make this statue set ideal for your pooja room, home temple, living room, or office. Perfect for daily worship, festive decorations, housewarming ceremonies, and auspicious gifting, this divine trio adds a timeless spiritual charm to any space.",
         "features": [
@@ -191,7 +191,7 @@ export const PRODUCTS: Product[] = [
         "categorySlug": "pooja-statues",
         "price": 8999,
         "originalPrice": 10349,
-        "image": "uploads/white-1792932237-golden_shiva_and_parvati_on_nandi.jpg",
+        "image": "/uploads/white-1792932237-golden_shiva_and_parvati_on_nandi.jpg",
         "description": "Bring divine beauty and spiritual elegance to your home with this intricately crafted Lord Shiva and Goddess Parvati statue seated on Nandi, the sacred bull. Featuring detailed crowns, traditional jewellery, beautifully carved ornaments, and an elaborately decorated pedestal, this stunning sculpture showcases a rich antique-gold brass finish that highlights its timeless South Indian craftsmanship.",
         "tamilDescription": "Bring divine beauty and spiritual elegance to your home with this intricately crafted Lord Shiva and Goddess Parvati statue seated on Nandi, the sacred bull. Featuring detailed crowns, traditional jewellery, beautifully carved ornaments, and an elaborately decorated pedestal, this stunning sculpture showcases a rich antique-gold brass finish that highlights its timeless South Indian craftsmanship.",
         "features": [
@@ -221,7 +221,7 @@ export const PRODUCTS: Product[] = [
         "categorySlug": "pooja-statues",
         "price": 8999,
         "originalPrice": 10349,
-        "image": "uploads/white-1792932069-ornate_brass_hindu_deity_tableau.jpg",
+        "image": "/uploads/white-1792932069-ornate_brass_hindu_deity_tableau.jpg",
         "description": "Bring divine blessings and timeless elegance to your home with this beautifully crafted Sri Rama Darbar statue set. Featuring Lord Rama, Goddess Sita, Lakshmana, and Lord Hanuman beneath an intricately carved ornamental arch, this traditional brass-finish sculpture showcases detailed crowns, jewellery, graceful expressions, and decorative engravings. The rich antique-gold finish and beautifully carved rectangular pedestal make it a striking centerpiece for your pooja room, home temple, or spiritual décor collection.",
         "tamilDescription": "Bring divine blessings and timeless elegance to your home with this beautifully crafted Sri Rama Darbar statue set. Featuring Lord Rama, Goddess Sita, Lakshmana, and Lord Hanuman beneath an intricately carved ornamental arch, this traditional brass-finish sculpture showcases detailed crowns, jewellery, graceful expressions, and decorative engravings. The rich antique-gold finish and beautifully carved rectangular pedestal make it a striking centerpiece for your pooja room, home temple, or spiritual décor collection.",
         "features": [
@@ -250,7 +250,7 @@ export const PRODUCTS: Product[] = [
         "categorySlug": "pooja-statues",
         "price": 7999,
         "originalPrice": 9199,
-        "image": "uploads/white-1792931878-ornate_antique_brass_krishna_statue.jpg",
+        "image": "/uploads/white-1792931878-ornate_antique_brass_krishna_statue.jpg",
         "description": "Bring divine charm and traditional elegance to your home with this beautifully detailed Lord Krishna brass statue, featuring an ornate crown, intricate jewellery, a decorative back design, and a traditional flute-playing pose. The rich antique-gold finish, finely carved ornaments, and elegant lotus-style pedestal make it a stunning addition to pooja rooms, temples, living spaces, and festive décor.",
         "tamilDescription": "Bring divine charm and traditional elegance to your home with this beautifully detailed Lord Krishna brass statue, featuring an ornate crown, intricate jewellery, a decorative back design, and a traditional flute-playing pose. The rich antique-gold finish, finely carved ornaments, and elegant lotus-style pedestal make it a stunning addition to pooja rooms, temples, living spaces, and festive décor.",
         "features": [
@@ -279,7 +279,7 @@ export const PRODUCTS: Product[] = [
         "categorySlug": "pooja-statues",
         "price": 5999,
         "originalPrice": 6899,
-        "image": "uploads/white-1792931670-golden_buddha_statue_on_lotus_pedestal.jpg",
+        "image": "/uploads/white-1792931670-golden_buddha_statue_on_lotus_pedestal.jpg",
         "description": "Bring peace, positivity, and serenity into your home with this beautifully crafted Buddha statue. Featuring a serene facial expression, intricately detailed curls, a traditional meditation posture, and elegant antique-gold and dark bronze finishes, this statue reflects timeless artistry and spiritual elegance.\n\nThe Buddha is seated in a peaceful cross-legged meditation pose, with one hand raised in a gesture of blessing and the other resting gently in the lap. Its refined detailing and contrasting metallic finish make it a striking addition to any spiritual or decorative setting.",
         "tamilDescription": "Bring peace, positivity, and serenity into your home with this beautifully crafted Buddha statue. Featuring a serene facial expression, intricately detailed curls, a traditional meditation posture, and elegant antique-gold and dark bronze finishes, this statue reflects timeless artistry and spiritual elegance.\n\nThe Buddha is seated in a peaceful cross-legged meditation pose, with one hand raised in a gesture of blessing and the other resting gently in the lap. Its refined detailing and contrasting metallic finish make it a striking addition to any spiritual or decorative setting.",
         "features": [
@@ -308,7 +308,7 @@ export const PRODUCTS: Product[] = [
         "categorySlug": "kuthu-vilakku",
         "price": 299,
         "originalPrice": 344,
-        "image": "uploads/white-1792931458-ornate_golden_horse-headed_deity_diya.jpg",
+        "image": "/uploads/white-1792931458-ornate_golden_horse-headed_deity_diya.jpg",
         "description": "nhance your pooja space with this beautifully crafted antique-gold brass vilakku, featuring an intricately detailed Hindu deity, an ornate decorative arch, and a traditional scalloped oil bowl. The elegant pedestal showcases finely carved patterns and a rich antique finish, reflecting the beauty of traditional South Indian craftsmanship.\n\nPerfect for daily pooja, festive decorations, temple use, housewarming gifts, and spiritual décor, this traditional brass lamp adds a divine and timeless touch to any space.",
         "tamilDescription": "nhance your pooja space with this beautifully crafted antique-gold brass vilakku, featuring an intricately detailed Hindu deity, an ornate decorative arch, and a traditional scalloped oil bowl. The elegant pedestal showcases finely carved patterns and a rich antique finish, reflecting the beauty of traditional South Indian craftsmanship.\n\nPerfect for daily pooja, festive decorations, temple use, housewarming gifts, and spiritual décor, this traditional brass lamp adds a divine and timeless touch to any space.",
         "features": [
@@ -337,7 +337,7 @@ export const PRODUCTS: Product[] = [
         "categorySlug": "kuthu-vilakku",
         "price": 699,
         "originalPrice": 804,
-        "image": "uploads/white-1792931175-ornate_brass_peacock_diya_stand.jpg",
+        "image": "/uploads/white-1792931175-ornate_brass_peacock_diya_stand.jpg",
         "description": "Bring timeless elegance and traditional South Indian charm to your home with this beautifully crafted brass peacock vilakku. Featuring an intricately carved peacock finial, a multi-bowl oil lamp design, a decorative stem, and an ornate circular pedestal, this lamp showcases the beauty of traditional Indian craftsmanship.\n\nThe antique-gold finish and detailed ornamental carvings make it a stunning addition to your pooja room, home temple, and festive décor. Its elegant peacock design adds a traditional and auspicious touch to your sacred space.",
         "tamilDescription": "Bring timeless elegance and traditional South Indian charm to your home with this beautifully crafted brass peacock vilakku. Featuring an intricately carved peacock finial, a multi-bowl oil lamp design, a decorative stem, and an ornate circular pedestal, this lamp showcases the beauty of traditional Indian craftsmanship.\n\nThe antique-gold finish and detailed ornamental carvings make it a stunning addition to your pooja room, home temple, and festive décor. Its elegant peacock design adds a traditional and auspicious touch to your sacred space.",
         "features": [
@@ -367,7 +367,7 @@ export const PRODUCTS: Product[] = [
         "categorySlug": "kuthu-vilakku",
         "price": 700,
         "originalPrice": 805,
-        "image": "uploads/white-1792931025-antique_brass_hindu_goddess_statue.jpg",
+        "image": "/uploads/white-1792931025-antique_brass_hindu_goddess_statue.jpg",
         "description": "Bring a divine and traditional touch to your pooja room with this beautifully crafted standing brass goddess vilakku. Featuring a finely detailed goddess figure holding a lamp bowl, an ornate crown, traditional jewelry, and an intricately carved pedestal, this piece showcases the beauty of Indian devotional craftsmanship.\n\nThe antique-gold finish and detailed engravings give the lamp a timeless, elegant appearance, making it ideal for daily worship, festive decorations, and traditional home interiors.",
         "tamilDescription": "Bring a divine and traditional touch to your pooja room with this beautifully crafted standing brass goddess vilakku. Featuring a finely detailed goddess figure holding a lamp bowl, an ornate crown, traditional jewelry, and an intricately carved pedestal, this piece showcases the beauty of Indian devotional craftsmanship.\n\nThe antique-gold finish and detailed engravings give the lamp a timeless, elegant appearance, making it ideal for daily worship, festive decorations, and traditional home interiors.",
         "features": [
@@ -396,7 +396,7 @@ export const PRODUCTS: Product[] = [
         "categorySlug": "kuthu-vilakku",
         "price": 450,
         "originalPrice": 518,
-        "image": "uploads/white-1792930318-ornate_golden_brass_diya_stand.jpg",
+        "image": "/uploads/white-1792930318-ornate_golden_brass_diya_stand.jpg",
         "description": "Bring divine elegance and traditional South Indian charm to your home with this beautifully crafted brass vilakku. Featuring a wide, scalloped bowl with an elegant spout, intricate floral engravings, and a decorative lotus-inspired pedestal, this vilakku showcases timeless craftsmanship.\n\nThe rich golden-brass finish and detailed ornamental patterns make it a beautiful addition to your pooja room, home temple, festive decorations, and traditional interiors.",
         "tamilDescription": "Bring divine elegance and traditional South Indian charm to your home with this beautifully crafted brass vilakku. Featuring a wide, scalloped bowl with an elegant spout, intricate floral engravings, and a decorative lotus-inspired pedestal, this vilakku showcases timeless craftsmanship.\n\nThe rich golden-brass finish and detailed ornamental patterns make it a beautiful addition to your pooja room, home temple, festive decorations, and traditional interiors.",
         "features": [
@@ -425,7 +425,7 @@ export const PRODUCTS: Product[] = [
         "categorySlug": "pooja-statues",
         "price": 600,
         "originalPrice": 6900,
-        "image": "uploads/white-1792929989-a_clean_studio_product_photo_a_single_ornate_gold.jpg",
+        "image": "/uploads/white-1792929989-a_clean_studio_product_photo_a_single_ornate_gold.jpg",
         "description": "Sacred handcrafted brass Goddess Saraswati statue holding the divine Veena on an ornate lotus pedestal. Consecrated proportions, authentic Madurai master craftsmanship.",
         "tamilDescription": "Sacred handcrafted brass Goddess Saraswati statue holding the divine Veena on an ornate lotus pedestal. Consecrated proportions, authentic Madurai master craftsmanship.",
         "features": [
@@ -453,7 +453,7 @@ export const PRODUCTS: Product[] = [
         "categorySlug": "pooja-statues",
         "price": 5900,
         "originalPrice": 6785,
-        "image": "uploads/white-1792927384-golden_brass_warrior_deity_statue_on_ornate_pedestal.jpg",
+        "image": "/uploads/white-1792927384-golden_brass_warrior_deity_statue_on_ornate_pedestal.jpg",
         "description": "Sacred handcrafted brass Lord Karuppasamy statue standing in a powerful guardian stance with a traditional Aruval (sickle) on an ornate pedestal. Consecrated proportions, authentic Madurai master craftsmanship.",
         "tamilDescription": "Sacred handcrafted brass Lord Karuppasamy statue standing in a powerful guardian stance with a traditional Aruval (sickle) on an ornate pedestal. Consecrated proportions, authentic Madurai master craftsmanship.",
         "features": [
@@ -481,7 +481,7 @@ export const PRODUCTS: Product[] = [
         "categorySlug": "pooja-statues",
         "price": 4498,
         "originalPrice": 5173,
-        "image": "uploads/white-1792926845-ornate_golden_brass_temple_deity_statue.jpg",
+        "image": "/uploads/white-1792926845-ornate_golden_brass_temple_deity_statue.jpg",
         "description": "Sacred handcrafted brass Lord Thiruchendur Senthil Andavar statue holding the divine Vel with the majestic Mayil Vahanam (Peacock Mount) on an ornate lotus pedestal. Consecrated proportions, authentic Madurai master craftsmanship.",
         "tamilDescription": "Sacred handcrafted brass Lord Thiruchendur Senthil Andavar statue holding the divine Vel with the majestic Mayil Vahanam (Peacock Mount) on an ornate lotus pedestal. Consecrated proportions, authentic Madurai master craftsmanship.",
         "features": [
@@ -509,7 +509,7 @@ export const PRODUCTS: Product[] = [
         "categorySlug": "pooja-statues",
         "price": 8000,
         "originalPrice": 9200,
-        "image": "uploads/white-1792926346-krishna_butter_pot_studio.jpg",
+        "image": "/uploads/white-1792926346-krishna_butter_pot_studio.jpg",
         "description": "Brass Krishna Idol Flute Standing Statue பாரம்பரிய தங்க நிறப் பித்தளையில் நின்ற கோலத்தில் அமைந்த வேணுகோபால சிலை.",
         "tamilDescription": "Brass Krishna Idol Flute Standing Statue பாரம்பரிய தங்க நிறப் பித்தளையில் நின்ற கோலத்தில் அமைந்த வேணுகோபால சிலை.",
         "features": [
@@ -537,7 +537,7 @@ export const PRODUCTS: Product[] = [
         "categorySlug": "pooja-statues",
         "price": 8515,
         "originalPrice": 7475,
-        "image": "uploads/white-1792926273-ornate_golden_krishna_dancing_statue.jpg",
+        "image": "/uploads/white-1792926273-ornate_golden_krishna_dancing_statue.jpg",
         "description": "Sacred handcrafted brass Lord Nataraja statue performing the cosmic Ananda Tandava within the flaming Prabhavali aureole on an ornate lotus pedestal. Consecrated proportions, authentic Madurai master craftsmanship.",
         "tamilDescription": "Sacred handcrafted brass Lord Nataraja statue performing the cosmic Ananda Tandava within the flaming Prabhavali aureole on an ornate lotus pedestal. Consecrated proportions, authentic Madurai master craftsmanship.",
         "features": [
@@ -569,9 +569,9 @@ export const PRODUCTS: Product[] = [
         "origin": "Madurai Traditional Workshop",
         "rating": 5,
         "reviewCount": 1,
-        "image": "ganesha-statue.jpg",
+        "image": "/ganesha-statue.jpg",
         "gallery": [
-            "ganesha-statue.jpg"
+            "/ganesha-statue.jpg"
         ],
         "description": "The lord ganesha statue available in all types of sizes and weights if you want a more details about the product click the below enquires button our experts will contact you",
         "tamilDescription": "The lord ganesha statue available in all types of sizes and weights if you want a more details about the product click the below enquires button our experts will contact you",
@@ -596,9 +596,9 @@ export const PRODUCTS: Product[] = [
         "origin": "Madurai Traditional Workshop",
         "rating": 5,
         "reviewCount": 1,
-        "image": "products/kuthu-vilakku.jpg",
+        "image": "/products/kuthu-vilakku.jpg",
         "gallery": [
-            "products/kuthu-vilakku.jpg"
+            "/products/kuthu-vilakku.jpg"
         ],
         "description": "Pooja  peedams kuthu villaku",
         "tamilDescription": "Pooja  peedams kuthu villaku",
@@ -623,9 +623,9 @@ export const PRODUCTS: Product[] = [
         "origin": "Madurai Traditional Workshop",
         "rating": 5,
         "reviewCount": 1,
-        "image": "statues/murugan_statue.jpg",
+        "image": "/statues/murugan_statue.jpg",
         "gallery": [
-            "statues/murugan_statue.jpg"
+            "/statues/murugan_statue.jpg"
         ],
         "description": "Murugan silai avilable",
         "tamilDescription": "Murugan silai avilable",
@@ -650,9 +650,9 @@ export const PRODUCTS: Product[] = [
         "origin": "Madurai Traditional Workshop",
         "rating": 5,
         "reviewCount": 1,
-        "image": "products/kuthu-vilakku.jpg",
+        "image": "/products/kuthu-vilakku.jpg",
         "gallery": [
-            "products/kuthu-vilakku.jpg"
+            "/products/kuthu-vilakku.jpg"
         ],
         "description": "Annam Vilakku, Kamakshi Amman Deepam, Hanging Peacock Diyas & Kerala Uruli Vilakku in pure virgin brass.",
         "tamilDescription": "Annam Vilakku, Kamakshi Amman Deepam, Hanging Peacock Diyas & Kerala Uruli Vilakku in pure virgin brass.",
@@ -682,9 +682,9 @@ export const PRODUCTS: Product[] = [
         "rating": 4.9,
         "reviewCount": 310,
         "tag": "Madurai Bestseller",
-        "image": "products/kuthu-vilakku.jpg",
+        "image": "/products/kuthu-vilakku.jpg",
         "gallery": [
-            "products/kuthu-vilakku.jpg"
+            "/products/kuthu-vilakku.jpg"
         ],
         "description": "Handcrafted virgin bell-grade brass standing oil lamps cast with traditional lost-wax methodology in Nachiarkoil. Crowned with an intricately hand-chiseled mythological Annam swan finial.",
         "tamilDescription": "நச்சியார்கோவில் கைவினைப் பித்தளையில் வார்த்தெடுக்கப்பட்ட புனித அன்னம் குத்து விளக்கு ஜோடி. 5 முக திரிகள் தாங்கும் வசதியுடன் தலைமுறை தலைமுறையாக நிலைத்திருக்கும் தரம்.",
@@ -713,7 +713,7 @@ export const PRODUCTS: Product[] = [
         "rating": 5,
         "reviewCount": 210,
         "tag": "Temple Sanctum Grade",
-        "image": "statues/murugan_statue.jpg",
+        "image": "/statues/murugan_statue.jpg",
         "description": "Exquisitely detailed Swamimalai lost-wax bronze idol of Lord Murugan standing with the divine sacred Vel spear, accompanied by the peacock Mayil vahana. Consecration ready.",
         "features": [
             "Authentic Swamimalai Lost-Wax casting",
@@ -723,7 +723,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "statues/murugan_statue.jpg"
+            "/statues/murugan_statue.jpg"
         ]
     },
     {
@@ -742,7 +742,7 @@ export const PRODUCTS: Product[] = [
         "rating": 4.9,
         "reviewCount": 420,
         "tag": "Heirloom Rasam Secret",
-        "image": "products/eeya-chombu.jpg",
+        "image": "/products/eeya-chombu.jpg",
         "description": "Authentic Kumbakonam pure tin alloy vessel for simmering aromatic South Indian rasam. Infuses therapeutic benefits and distinctive aroma that cannot be replicated in stainless steel.",
         "features": [
             "100% Certified food-safe tin alloy",
@@ -752,7 +752,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/eeya-chombu.jpg"
+            "/products/eeya-chombu.jpg"
         ]
     },
     {
@@ -771,7 +771,7 @@ export const PRODUCTS: Product[] = [
         "rating": 4.8,
         "reviewCount": 260,
         "tag": "Foyer Vastu Decor",
-        "image": "products/peacock-uruli.jpg",
+        "image": "/products/peacock-uruli.jpg",
         "description": "Broad handcrafted traditional brass Uruli bowl featuring twin carved peacocks on rim and integrated floating diya notches. Perfect for welcoming positive energy at entryways with floating jasmine and rose petals.",
         "features": [
             "Heavy virgin brass with golden mirror buff",
@@ -781,7 +781,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/peacock-uruli.jpg"
+            "/products/peacock-uruli.jpg"
         ]
     },
     {
@@ -800,7 +800,7 @@ export const PRODUCTS: Product[] = [
         "rating": 4.9,
         "reviewCount": 340,
         "tag": "Traditional Pongal",
-        "image": "products/vengala-paanai.jpg",
+        "image": "/products/vengala-paanai.jpg",
         "description": "Heavy South Indian hand-hammered bronze Vengala Paanai for boiling traditional sweet Sakkarai Pongal and temple prasadams. Distributes heat evenly without burning.",
         "features": [
             "Pure Kansa bronze composition (78% Copper, 22% Tin)",
@@ -810,7 +810,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/vengala-paanai.jpg"
+            "/products/vengala-paanai.jpg"
         ]
     },
     {
@@ -828,7 +828,7 @@ export const PRODUCTS: Product[] = [
         "rating": 4.8,
         "reviewCount": 195,
         "tag": "Ayurvedic Health",
-        "image": "products/pure-copper-water-pot-white.jpg",
+        "image": "/products/pure-copper-water-pot-white.jpg",
         "description": "99% pure hammered copper drinking water dispenser pot equipped with a solid brass drip-free faucet. Naturally purifies water overnight following Tamra Jal Ayurvedic traditions.",
         "features": [
             "99.4% Certified pure virgin copper",
@@ -838,7 +838,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/pure-copper-water-pot-white.jpg"
+            "/products/pure-copper-water-pot-white.jpg"
         ]
     },
     {
@@ -857,7 +857,7 @@ export const PRODUCTS: Product[] = [
         "rating": 5,
         "reviewCount": 280,
         "tag": "Madurai Flagship Item",
-        "image": "products/meenakshi-amman.jpg",
+        "image": "/products/meenakshi-amman.jpg",
         "description": "Gracefully sculpted brass statue of Goddess Madurai Meenakshi Amman holding a sacred lotus with the royal green parrot resting on her shoulder. Faithful replica of the Madurai Kovil sanctum form.",
         "features": [
             "Madurai Sthapati authenticated iconography",
@@ -867,7 +867,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/meenakshi-amman.jpg"
+            "/products/meenakshi-amman.jpg"
         ]
     },
     {
@@ -885,7 +885,7 @@ export const PRODUCTS: Product[] = [
         "rating": 4.9,
         "reviewCount": 510,
         "tag": "Degree Kaapi Essential",
-        "image": "products/classic-brass-filter-coffee-white.jpg",
+        "image": "/products/classic-brass-filter-coffee-white.jpg",
         "description": "Traditional Kumbakonam Degree Coffee brass drip maker with micro-perforated filter disc and umbrella presser. Brews thick, aromatic South Indian decoction effortlessly.",
         "features": [
             "Micro-perforated precision filter holes",
@@ -895,7 +895,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/classic-brass-filter-coffee-white.jpg"
+            "/products/classic-brass-filter-coffee-white.jpg"
         ]
     },
     {
@@ -913,7 +913,7 @@ export const PRODUCTS: Product[] = [
         "rating": 4.9,
         "reviewCount": 380,
         "tag": "Kitchen Heirloom",
-        "image": "products/traditional-brass-masala-dabba-white.jpg",
+        "image": "/products/traditional-brass-masala-dabba-white.jpg",
         "description": "Traditional South Indian 7-compartment Anjalai Petti handcrafted in pure heavy brass. Includes 7 individual brass spice cups, a brass spoon, and an airtight engraved lid for preserving spices naturally.",
         "features": [
             "Heavy virgin brass: naturally anti-microbial for spice preservation",
@@ -923,7 +923,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/traditional-brass-masala-dabba-white.jpg"
+            "/products/traditional-brass-masala-dabba-white.jpg"
         ]
     },
     {
@@ -941,7 +941,7 @@ export const PRODUCTS: Product[] = [
         "rating": 5,
         "reviewCount": 290,
         "tag": "Wedding Seervarisai",
-        "image": "products/silver-plated-thali-set-white.jpg",
+        "image": "/products/silver-plated-thali-set-white.jpg",
         "description": "Opulent 6-piece silver-plated feast and pooja set comprising an embossed dining thali plate, 2 katoris, sweet bowl, tumbler, and spoon. Finished in lustrous pure silver plating that does not tarnish easily.",
         "features": [
             "Heavy brass base with certified 999 silver micron plating",
@@ -951,7 +951,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/silver-plated-thali-set-white.jpg"
+            "/products/silver-plated-thali-set-white.jpg"
         ]
     },
     {
@@ -969,7 +969,7 @@ export const PRODUCTS: Product[] = [
         "rating": 4.9,
         "reviewCount": 175,
         "tag": "925 Hallmarked Silver",
-        "image": "products/pure-silver-pooja-diya-pair-white.jpg",
+        "image": "/products/pure-silver-pooja-diya-pair-white.jpg",
         "description": "Pair of consecrated solid sterling silver Deepak lamps for household deity alters and festive Lakshmi Kubera pooja. Cast in traditional South Indian floral base with sturdy wick holders.",
         "features": [
             "92.5% Certified Hallmarked Sterling Silver",
@@ -979,7 +979,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/pure-silver-pooja-diya-pair-white.jpg"
+            "/products/pure-silver-pooja-diya-pair-white.jpg"
         ]
     },
     {
@@ -998,7 +998,7 @@ export const PRODUCTS: Product[] = [
         "rating": 5,
         "reviewCount": 640,
         "tag": "Filter Kaapi Ritual",
-        "image": "products/brass-davarah-tumbler-set-white.jpg",
+        "image": "/products/brass-davarah-tumbler-set-white.jpg",
         "description": "Authentic heavy gauge brass South Indian Davarah and Tumbler set for enjoying frothy Madras filter coffee at home. Perfectly aerates and preserves temperature.",
         "features": [
             "Authentic Kumbakonam flared lip design for smooth pouring and froth",
@@ -1008,7 +1008,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/brass-davarah-tumbler-set-white.jpg"
+            "/products/brass-davarah-tumbler-set-white.jpg"
         ]
     },
     {
@@ -1026,7 +1026,7 @@ export const PRODUCTS: Product[] = [
         "rating": 5,
         "reviewCount": 94,
         "tag": "Heritage Masterpiece",
-        "image": "products/chettinad-teakwood-oonjal-swing-white.jpg",
+        "image": "/products/chettinad-teakwood-oonjal-swing-white.jpg",
         "description": "Handcrafted heirloom Chettinad porch swing made from 100% seasoned solid teakwood with intricate Yali and peacock carvings. Suspended with heavy, hand-cast ornate brass link chains and brass ceiling hooks.",
         "features": [
             "Solid First-Cut Seasoned Teakwood: Termite-proof, natural honey-wax polish",
@@ -1036,7 +1036,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/chettinad-teakwood-oonjal-swing-white.jpg"
+            "/products/chettinad-teakwood-oonjal-swing-white.jpg"
         ]
     },
     {
@@ -1055,7 +1055,7 @@ export const PRODUCTS: Product[] = [
         "rating": 4.9,
         "reviewCount": 120,
         "tag": "Sanctum Mandapam",
-        "image": "products/teakwood-pooja-mandapam-shrine-white.jpg",
+        "image": "/products/teakwood-pooja-mandapam-shrine-white.jpg",
         "description": "Temple-inspired home altar mandapam featuring multi-tier South Indian gopuram crown, twin carved pillars, brass hanging bells, pull-out prasadam drawer, and Diya extension tray.",
         "features": [
             "Carved Dravidian Gopuram shikhara with brass kalasam",
@@ -1065,7 +1065,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/teakwood-pooja-mandapam-shrine-white.jpg"
+            "/products/teakwood-pooja-mandapam-shrine-white.jpg"
         ]
     },
     {
@@ -1083,7 +1083,7 @@ export const PRODUCTS: Product[] = [
         "rating": 4.8,
         "reviewCount": 65,
         "tag": "Royal Living",
-        "image": "products/brass-studded-teakwood-diwan-white.jpg",
+        "image": "/products/brass-studded-teakwood-diwan-white.jpg",
         "description": "Grand vintage living room daybed handcrafted from mature teak timber, featuring fluted lathe-turned legs, decorative brass medallions, and brass edge reinforcements.",
         "features": [
             "100% Solid Heartwood Teak: Resilient against sagging and weather changes",
@@ -1093,7 +1093,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/brass-studded-teakwood-diwan-white.jpg"
+            "/products/brass-studded-teakwood-diwan-white.jpg"
         ]
     },
     {
@@ -1111,7 +1111,7 @@ export const PRODUCTS: Product[] = [
         "rating": 4.9,
         "reviewCount": 180,
         "tag": "Pooja Essential",
-        "image": "products/peacock-uruli.jpg",
+        "image": "/products/peacock-uruli.jpg",
         "description": "Stout carved solid teak pedestal stool designed for elevating large Brass Urulis, deity vigrahams, or Kuthu Vilakku off the floor with elegance.",
         "features": [
             "Carved lotus petal base with non-slip rubberized foot pads",
@@ -1121,7 +1121,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/peacock-uruli.jpg"
+            "/products/peacock-uruli.jpg"
         ]
     },
     {
@@ -1139,7 +1139,7 @@ export const PRODUCTS: Product[] = [
         "rating": 4.9,
         "reviewCount": 88,
         "tag": "Bridal Seervarisai Essential",
-        "image": "products/teakwood-king-cot-bed-white.jpg",
+        "image": "/products/teakwood-king-cot-bed-white.jpg",
         "description": "Grand King Size 72x78 inch master bedroom cot handcrafted from dense heartwood teak. Features an intricately chiseled floral arch headboard, solid base support planks, and corner brass medallions.",
         "features": [
             "King Size: 72 x 78 Inches (Fits standard King mattress)",
@@ -1149,7 +1149,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/teakwood-king-cot-bed-white.jpg"
+            "/products/teakwood-king-cot-bed-white.jpg"
         ]
     },
     {
@@ -1167,7 +1167,7 @@ export const PRODUCTS: Product[] = [
         "rating": 5,
         "reviewCount": 112,
         "tag": "Living Room Royalty",
-        "image": "products/chettinad-carved-teakwood-sofa-set-white.jpg",
+        "image": "/products/chettinad-carved-teakwood-sofa-set-white.jpg",
         "description": "Majestic 5-seater living room sofa set (3-seater bench + two single armchairs) in classic Chettinad palatial style. Adorned with roll-top lion armrests, fluted legs, and comfortable washable cushions.",
         "features": [
             "Complete 5-Seater Ensemble: 1 Three-Seater + 2 Single Club Chairs",
@@ -1177,7 +1177,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/chettinad-carved-teakwood-sofa-set-white.jpg"
+            "/products/chettinad-carved-teakwood-sofa-set-white.jpg"
         ]
     },
     {
@@ -1196,7 +1196,7 @@ export const PRODUCTS: Product[] = [
         "rating": 4.9,
         "reviewCount": 76,
         "tag": "Wedding Wardrobe",
-        "image": "products/solid-teakwood-3-door-bero-white.jpg",
+        "image": "/products/solid-teakwood-3-door-bero-white.jpg",
         "description": "Generous 3-door wooden Bero designed for family storage and bridal seer gifting. Features a full-length dressing mirror, concealed jewelry locker with double-key security, saree hanging rod, and deep shelving.",
         "features": [
             "Three-door spacious configuration with Belgian glass dressing mirror",
@@ -1206,7 +1206,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/solid-teakwood-3-door-bero-white.jpg"
+            "/products/solid-teakwood-3-door-bero-white.jpg"
         ]
     },
     {
@@ -1225,7 +1225,7 @@ export const PRODUCTS: Product[] = [
         "rating": 4.8,
         "reviewCount": 145,
         "tag": "Kitchen Utility Essential",
-        "image": "products/teakwood-steel-gas-stove-table-stand-white.jpg",
+        "image": "/products/teakwood-steel-gas-stove-table-stand-white.jpg",
         "description": "Ergonomic kitchen counter stand engineered for South Indian cooking. Features a heavy heat-resistant stainless steel top platform for 2/3-burner gas stoves, lower shelves for spice jars and heavy vessels, and an enclosed gas cylinder bay.",
         "features": [
             "Food-grade heat-resistant top platform for 2 or 3-burner gas stove",
@@ -1235,7 +1235,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/teakwood-steel-gas-stove-table-stand-white.jpg"
+            "/products/teakwood-steel-gas-stove-table-stand-white.jpg"
         ]
     },
     {
@@ -1254,7 +1254,7 @@ export const PRODUCTS: Product[] = [
         "rating": 4.9,
         "reviewCount": 230,
         "tag": "Salem Heavy Steel",
-        "image": "products/salem-heavy-steel-wedding-bero-white.jpg",
+        "image": "/products/salem-heavy-steel-wedding-bero-white.jpg",
         "description": "Traditional Tamil bridal seervarisai steel wardrobe manufactured from rust-resistant Salem sheet metal. Features multi-coat baked enamel paint, inner safe locker, bangle tray, and 5-lever brass lock.",
         "features": [
             "Heavy 18-gauge Salem steel sheet for lifelong anti-theft rigidity",
@@ -1264,7 +1264,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "products/salem-heavy-steel-wedding-bero-white.jpg"
+            "/products/salem-heavy-steel-wedding-bero-white.jpg"
         ]
     },
     {
@@ -1283,7 +1283,7 @@ export const PRODUCTS: Product[] = [
         "rating": 5,
         "reviewCount": 142,
         "tag": "Vastu Auspicious Bestseller",
-        "image": "ganesha-statue.jpg",
+        "image": "/ganesha-statue.jpg",
         "description": "Exquisitely hand-cast solid brass Lord Ganesha idol seated in Padmasana on a sculpted blooming lotus pedestal. Features modak in left hand, noose and goad in upper hands, and abhaya mudra for removing all obstacles. Cast using traditional Madurai lost-wax technique.",
         "tamilDescription": "மதுரை & சுவாமிமலை பாரம்பரிய மெழுகு வார்ப்பு முறையில் வார்த்தெடுக்கப்பட்ட அருள்மிகு கணபதி சிலை. தாமரை பீடத்தில் அமர்ந்த கோலம், விக்னங்களை நீக்கும் அபய கரத்துடன் உங்கள் இல்லத்திற்கு மங்கலம் தரும் புனித வடிவம்.",
         "features": [
@@ -1295,7 +1295,7 @@ export const PRODUCTS: Product[] = [
         ],
         "inStock": true,
         "gallery": [
-            "ganesha-statue.jpg"
+            "/ganesha-statue.jpg"
         ]
     }
 ];

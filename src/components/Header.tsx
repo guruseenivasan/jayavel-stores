@@ -1,5 +1,7 @@
 "use client";
 
+import { formatProductImageUrl } from "@/lib/image";
+
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -202,7 +204,7 @@ export default function Header() {
                           className="flex items-center gap-3 p-3 hover:bg-[#fcf9f8] transition-colors group"
                         >
                           <img
-                            src={item.image}
+                            src={formatProductImageUrl(item.image)} onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/logo.png"; }}
                             alt={item.title}
                             className="w-12 h-12 object-cover rounded-lg border border-[#e5e2e1] shrink-0"
                           />

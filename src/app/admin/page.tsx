@@ -1,5 +1,7 @@
 "use client";
 
+import { formatProductImageUrl } from "@/lib/image";
+
 import { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import { Product, Category, CATEGORIES } from "@/data/products";
@@ -885,12 +887,12 @@ export default function AdminPage() {
                           <div className="w-14 h-14 rounded-xl overflow-hidden bg-gray-100 border border-[#e5e2e1] shrink-0 relative">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
-                              src={product.image}
+                              src={formatProductImageUrl(product.image)}
                               alt={product.title}
                               className="w-full h-full object-cover"
                               onError={(e) => {
                                 (e.target as HTMLImageElement).src =
-                                  "https://placehold.co/100x100/7c1d24/ffffff?text=Jayavel";
+                                  "/logo.png";
                               }}
                             />
                           </div>
@@ -1139,7 +1141,7 @@ export default function AdminPage() {
                         <div className="flex items-center gap-4 text-left w-full">
                           <div className="w-16 h-16 rounded-xl overflow-hidden bg-white border border-emerald-300 shadow shrink-0">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={formImage} alt="Preview" className="w-full h-full object-cover" />
+                            <img src={formatProductImageUrl(formImage)} onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/logo.png"; }} alt="Preview" className="w-full h-full object-cover" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <span className="text-xs font-bold text-emerald-800 flex items-center gap-1">
@@ -1440,7 +1442,7 @@ export default function AdminPage() {
                     <div className="relative aspect-square bg-white p-2.5 overflow-hidden flex items-center justify-center border-b border-[#e5e2e1]">
                       {formImage ? (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={formImage} alt="Preview" className="w-full h-full object-contain" />
+                        <img src={formatProductImageUrl(formImage)} onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/logo.png"; }} alt="Preview" className="w-full h-full object-contain" />
                       ) : (
                         <div className="w-full h-full flex flex-col items-center justify-center text-gray-400 p-4 text-center">
                           <svg className="w-12 h-12 mb-2 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
