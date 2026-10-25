@@ -1,42 +1,95 @@
 import { NextRequest, NextResponse } from "next/server";
 import path from "path";
 import fs from "fs/promises";
+import fsSync from "fs";
 import { Product } from "@/data/products";
 
-const PRODUCTS_FILE = path.join(process.cwd(), "src", "data", "products.json");
+const BUNDLED_PRODUCTS_FILE = path.join(process.cwd(), "src", "data", "products.json");
+const TMP_PRODUCTS_FILE = path.join("/tmp", "products.json");
 const PRODUCTS_TS_FILE = path.join(process.cwd(), "src", "data", "products.ts");
 
+// Global in-memory cache across warm serverless function instances
+let inMemoryProductsCache: Product[] | null = null;
+
 async function readProductsFromFile(): Promise<Product[]> {
+  // 1. If in-memory cache is populated, return it
+  if (inMemoryProductsCache && inMemoryProductsCache.length > 0) {
+    return [...inMemoryProductsCache];
+  }
+
+  // 2. Check if an updated copy exists in /tmp (written in Vercel serverless mode)
   try {
-    const raw = await fs.readFile(PRODUCTS_FILE, "utf-8");
-    return JSON.parse(raw);
-  } catch {
+    if (fsSync.existsSync(TMP_PRODUCTS_FILE)) {
+      const tmpRaw = await fs.readFile(TMP_PRODUCTS_FILE, "utf-8");
+      const tmpData = JSON.parse(tmpRaw);
+      if (Array.isArray(tmpData) && tmpData.length > 0) {
+        inMemoryProductsCache = tmpData;
+        return [...tmpData];
+      }
+    }
+  } catch (err) {
+    console.warn("Could not read /tmp/products.json:", err);
+  }
+
+  // 3. Fallback to bundled repository products.json
+  try {
+    const raw = await fs.readFile(BUNDLED_PRODUCTS_FILE, "utf-8");
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed)) {
+      inMemoryProductsCache = parsed;
+      return [...parsed];
+    }
+    return [];
+  } catch (err) {
+    console.error("Failed to read bundled products.json:", err);
     return [];
   }
 }
 
 async function writeProductsToFile(products: Product[]): Promise<void> {
-  await fs.writeFile(PRODUCTS_FILE, JSON.stringify(products, null, 2), "utf-8");
+  // Always update in-memory cache immediately
+  inMemoryProductsCache = [...products];
 
-  // Keep src/data/products.ts in sync so server components reflect new products immediately
+  // 1. Attempt writing to project bundled location (works on local dev / VPS)
+  let wroteToProject = false;
   try {
-    const rawTs = await fs.readFile(PRODUCTS_TS_FILE, "utf-8");
-    const marker = "export const PRODUCTS: Product[] = ";
-    const idx = rawTs.indexOf(marker);
-    if (idx !== -1) {
-      const funcMarker = "export function getProductBySlug";
-      const funcIdx = rawTs.indexOf(funcMarker);
-      if (funcIdx !== -1) {
-        const newTs =
-          rawTs.slice(0, idx + marker.length) +
-          JSON.stringify(products, null, 2) +
-          ";\n\n" +
-          rawTs.slice(funcIdx);
-        await fs.writeFile(PRODUCTS_TS_FILE, newTs, "utf-8");
-      }
+    await fs.writeFile(BUNDLED_PRODUCTS_FILE, JSON.stringify(products, null, 2), "utf-8");
+    wroteToProject = true;
+  } catch (err: unknown) {
+    const isErofs = err && typeof err === "object" && "code" in err && (err as { code: string }).code === "EROFS";
+    if (!isErofs) {
+      console.warn("Could not write to bundled products file:", err);
     }
-  } catch (err) {
-    console.error("Failed to sync products.ts:", err);
+  }
+
+  // 2. Fallback to /tmp/products.json (always writable in Vercel / AWS Lambda)
+  try {
+    await fs.writeFile(TMP_PRODUCTS_FILE, JSON.stringify(products, null, 2), "utf-8");
+  } catch (tmpErr) {
+    console.warn("Failed to write to /tmp/products.json fallback:", tmpErr);
+  }
+
+  // 3. Keep src/data/products.ts in sync only if filesystem is writable
+  if (wroteToProject) {
+    try {
+      const rawTs = await fs.readFile(PRODUCTS_TS_FILE, "utf-8");
+      const marker = "export const PRODUCTS: Product[] = ";
+      const idx = rawTs.indexOf(marker);
+      if (idx !== -1) {
+        const funcMarker = "export function getProductBySlug";
+        const funcIdx = rawTs.indexOf(funcMarker);
+        if (funcIdx !== -1) {
+          const newTs =
+            rawTs.slice(0, idx + marker.length) +
+            JSON.stringify(products, null, 2) +
+            ";\n\n" +
+            rawTs.slice(funcIdx);
+          await fs.writeFile(PRODUCTS_TS_FILE, newTs, "utf-8");
+        }
+      }
+    } catch {
+      // Ignore sync error in read-only environment
+    }
   }
 }
 

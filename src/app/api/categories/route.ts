@@ -1,22 +1,66 @@
 import { NextRequest, NextResponse } from "next/server";
 import path from "path";
 import fs from "fs/promises";
+import fsSync from "fs";
 import { Category } from "@/data/products";
 
-const CATEGORIES_FILE = path.join(process.cwd(), "src", "data", "categories.json");
-const PRODUCTS_FILE = path.join(process.cwd(), "src", "data", "products.json");
+const BUNDLED_CATEGORIES_FILE = path.join(process.cwd(), "src", "data", "categories.json");
+const TMP_CATEGORIES_FILE = path.join("/tmp", "categories.json");
+const BUNDLED_PRODUCTS_FILE = path.join(process.cwd(), "src", "data", "products.json");
+const TMP_PRODUCTS_FILE = path.join("/tmp", "products.json");
+
+let inMemoryCategoriesCache: Category[] | null = null;
 
 async function readCategories(): Promise<Category[]> {
+  if (inMemoryCategoriesCache && inMemoryCategoriesCache.length > 0) {
+    return [...inMemoryCategoriesCache];
+  }
+
+  // 1. Check /tmp
   try {
-    const raw = await fs.readFile(CATEGORIES_FILE, "utf-8");
-    return JSON.parse(raw);
+    if (fsSync.existsSync(TMP_CATEGORIES_FILE)) {
+      const tmpRaw = await fs.readFile(TMP_CATEGORIES_FILE, "utf-8");
+      const tmpData = JSON.parse(tmpRaw);
+      if (Array.isArray(tmpData) && tmpData.length > 0) {
+        inMemoryCategoriesCache = tmpData;
+        return [...tmpData];
+      }
+    }
+  } catch {}
+
+  // 2. Bundled file
+  try {
+    const raw = await fs.readFile(BUNDLED_CATEGORIES_FILE, "utf-8");
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed)) {
+      inMemoryCategoriesCache = parsed;
+      return [...parsed];
+    }
+    return [];
   } catch {
     return [];
   }
 }
 
 async function writeCategories(categories: Category[]): Promise<void> {
-  await fs.writeFile(CATEGORIES_FILE, JSON.stringify(categories, null, 2), "utf-8");
+  inMemoryCategoriesCache = [...categories];
+
+  // Try bundled file
+  try {
+    await fs.writeFile(BUNDLED_CATEGORIES_FILE, JSON.stringify(categories, null, 2), "utf-8");
+  } catch (err: unknown) {
+    const isErofs = err && typeof err === "object" && "code" in err && (err as { code: string }).code === "EROFS";
+    if (!isErofs) {
+      console.warn("Could not write bundled categories file:", err);
+    }
+  }
+
+  // Write to /tmp
+  try {
+    await fs.writeFile(TMP_CATEGORIES_FILE, JSON.stringify(categories, null, 2), "utf-8");
+  } catch (tmpErr) {
+    console.warn("Failed to write /tmp/categories.json:", tmpErr);
+  }
 }
 
 export async function GET() {
@@ -24,7 +68,15 @@ export async function GET() {
     const categories = await readCategories();
     // Count current products in each category dynamically
     try {
-      const prodRaw = await fs.readFile(PRODUCTS_FILE, "utf-8");
+      let prodRaw = "";
+      if (fsSync.existsSync(TMP_PRODUCTS_FILE)) {
+        try {
+          prodRaw = await fs.readFile(TMP_PRODUCTS_FILE, "utf-8");
+        } catch {}
+      }
+      if (!prodRaw) {
+        prodRaw = await fs.readFile(BUNDLED_PRODUCTS_FILE, "utf-8");
+      }
       const products = JSON.parse(prodRaw);
       const enriched = categories.map((cat) => {
         const matching = products.filter(

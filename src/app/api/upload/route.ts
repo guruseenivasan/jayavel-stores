@@ -28,18 +28,31 @@ export async function POST(request: NextRequest) {
       const uniqueFileName = `white-${Date.now()}-${baseName.replace(/\.[^/.]+$/, "")}.${ext}`;
 
       const uploadDir = path.join(process.cwd(), "public", "uploads");
-      await fs.mkdir(uploadDir, { recursive: true });
 
-      const filePath = path.join(uploadDir, uniqueFileName);
-      await fs.writeFile(filePath, buffer);
+      try {
+        await fs.mkdir(uploadDir, { recursive: true });
+        const filePath = path.join(uploadDir, uniqueFileName);
+        await fs.writeFile(filePath, buffer);
 
-      return NextResponse.json({
-        success: true,
-        url: `/uploads/${uniqueFileName}`,
-        filename: uniqueFileName,
-        size: buffer.length,
-        whiteStandardized: true,
-      });
+        return NextResponse.json({
+          success: true,
+          url: `/uploads/${uniqueFileName}`,
+          filename: uniqueFileName,
+          size: buffer.length,
+          whiteStandardized: true,
+        });
+      } catch (fsErr: unknown) {
+        // Fallback for serverless read-only filesystem (Vercel / AWS Lambda):
+        // Return the Base64 data URL directly as image URL so it renders everywhere without disk writing!
+        console.warn("Read-only filesystem detected, falling back to dataUrl:", fsErr);
+        return NextResponse.json({
+          success: true,
+          url: body.dataUrl,
+          filename: uniqueFileName,
+          size: buffer.length,
+          whiteStandardized: true,
+        });
+      }
     }
 
     // 2. Support Multipart Form Data upload
@@ -81,42 +94,55 @@ export async function POST(request: NextRequest) {
 
     // Target upload directory: public/uploads
     const uploadDir = path.join(process.cwd(), "public", "uploads");
-    await fs.mkdir(uploadDir, { recursive: true });
 
-    const rawFilePath = path.join(uploadDir, rawFileName);
-    await fs.writeFile(rawFilePath, buffer);
+    try {
+      await fs.mkdir(uploadDir, { recursive: true });
+      const rawFilePath = path.join(uploadDir, rawFileName);
+      await fs.writeFile(rawFilePath, buffer);
 
-    let finalPublicUrl = `/uploads/${rawFileName}`;
-    let isWhiteStandardized = false;
+      let finalPublicUrl = `/uploads/${rawFileName}`;
+      let isWhiteStandardized = false;
 
-    // Automatically standardize raw photo to studio white background
-    if (forceWhiteBg && !file.type.includes("svg")) {
-      const whiteFileName = `white-${Date.now()}-${sanitizedName.replace(/\.[^/.]+$/, "")}.jpg`;
-      const whiteFilePath = path.join(uploadDir, whiteFileName);
-      const pythonScript = path.join(process.cwd(), "scripts", "make_white_bg.py");
+      // Automatically standardize raw photo to studio white background if Python is available
+      if (forceWhiteBg && !file.type.includes("svg")) {
+        const whiteFileName = `white-${Date.now()}-${sanitizedName.replace(/\.[^/.]+$/, "")}.jpg`;
+        const whiteFilePath = path.join(uploadDir, whiteFileName);
+        const pythonScript = path.join(process.cwd(), "scripts", "make_white_bg.py");
 
-      try {
-        await execFileAsync("python", [pythonScript, rawFilePath, whiteFilePath]);
-        // Verify output file exists and has size
-        const stat = await fs.stat(whiteFilePath);
-        if (stat.size > 0) {
-          finalPublicUrl = `/uploads/${whiteFileName}`;
-          isWhiteStandardized = true;
+        try {
+          await execFileAsync("python", [pythonScript, rawFilePath, whiteFilePath]);
+          const stat = await fs.stat(whiteFilePath);
+          if (stat.size > 0) {
+            finalPublicUrl = `/uploads/${whiteFileName}`;
+            isWhiteStandardized = true;
+          }
+        } catch (procErr) {
+          console.warn("Python auto-standardization fallback to raw:", procErr);
         }
-      } catch (procErr) {
-        console.warn("Python auto-standardization fallback to raw:", procErr);
       }
-    }
 
-    return NextResponse.json({
-      success: true,
-      url: finalPublicUrl,
-      rawUrl: `/uploads/${rawFileName}`,
-      filename: isWhiteStandardized ? path.basename(finalPublicUrl) : rawFileName,
-      size: file.size,
-      type: file.type,
-      whiteStandardized: isWhiteStandardized,
-    });
+      return NextResponse.json({
+        success: true,
+        url: finalPublicUrl,
+        rawUrl: `/uploads/${rawFileName}`,
+        filename: isWhiteStandardized ? path.basename(finalPublicUrl) : rawFileName,
+        size: file.size,
+        type: file.type,
+        whiteStandardized: isWhiteStandardized,
+      });
+    } catch (fsErr: unknown) {
+      // Fallback for serverless read-only filesystem (Vercel / AWS Lambda)
+      const base64Data = `data:${file.type || "image/jpeg"};base64,${buffer.toString("base64")}`;
+      return NextResponse.json({
+        success: true,
+        url: base64Data,
+        rawUrl: base64Data,
+        filename: sanitizedName,
+        size: file.size,
+        type: file.type,
+        whiteStandardized: false,
+      });
+    }
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Failed to upload image";
     return NextResponse.json(
