@@ -91,7 +91,7 @@
   function cleanImagePath(path) {
     if (!path) return 'logo.png';
     // If it's already an absolute HTTP URL, keep it
-    if (/^https?:\/\//i.test(path)) return path;
+    if (/^https?:\/\//i.test(path) || path.indexOf('data:') === 0) return path;
     // Strip leading slashes
     var clean = path.replace(/^\/+/, '');
     return clean;
@@ -231,10 +231,10 @@
         if (slug) rendered.add(slug);
       });
 
-      // Render missing products
+      // Render missing products with proper top-ordering
+      var toRender = [];
       pageProducts.forEach(function (p) {
         if (rendered.has(p.id) || (p.slug && rendered.has(p.slug))) {
-          // If already rendered, make sure image is not broken
           var existingCard = grid.querySelector('[data-product-id="' + p.id + '"]') || (p.slug ? grid.querySelector('[data-slug="' + p.slug + '"]') : null);
           if (existingCard) {
             var img = existingCard.querySelector('img');
@@ -244,16 +244,24 @@
           }
           return;
         }
-
-        var newCard = createProductCard(p, config.gridId);
-        if (config.prepend) {
-          grid.prepend(newCard);
-        } else {
-          grid.appendChild(newCard);
-        }
-        rendered.add(p.id);
-        if (p.slug) rendered.add(p.slug);
+        toRender.push(p);
       });
+
+      if (config.prepend) {
+        for (var i = toRender.length - 1; i >= 0; i--) {
+          var newCard = createProductCard(toRender[i], config.gridId);
+          grid.prepend(newCard);
+          rendered.add(toRender[i].id);
+          if (toRender[i].slug) rendered.add(toRender[i].slug);
+        }
+      } else {
+        toRender.forEach(function (p) {
+          var newCard = createProductCard(p, config.gridId);
+          grid.appendChild(newCard);
+          rendered.add(p.id);
+          if (p.slug) rendered.add(p.slug);
+        });
+      }
 
       // Update count badge if requested
       if (config.countId) {

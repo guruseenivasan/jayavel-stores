@@ -1,9 +1,25 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { PRODUCTS, STORE_CONTACT } from "@/data/products";
+import { PRODUCTS, STORE_CONTACT, Product } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 
 export default function HomePage() {
-  const bestSellers = PRODUCTS.slice(0, 4);
+  const [productsList, setProductsList] = useState<Product[]>(PRODUCTS);
+
+  useEffect(() => {
+    fetch("/api/products")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && Array.isArray(data.products) && data.products.length > 0) {
+          setProductsList(data.products);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const bestSellers = productsList.slice(0, 8);
 
   const categories = [
     {
@@ -261,7 +277,7 @@ export default function HomePage() {
                 Heirloom Quality Standard
               </span>
               <h2 className="font-serif text-2xl sm:text-3xl text-[#48061d] font-bold">
-                Best Sellers &amp; Temple Specials
+                New Arrivals &amp; Temple Specials
               </h2>
               <p className="text-sm text-[#534245]">
                 The most revered selections ordered by Madurai families and overseas temples.
@@ -271,7 +287,7 @@ export default function HomePage() {
               href="/categories"
               className="inline-flex items-center gap-1.5 text-xs font-bold text-[#48061d] hover:text-[#7b5902] transition-colors"
             >
-              <span>Explore All Products</span>
+              <span>Explore All Products ({productsList.length})</span>
               <span className="material-symbols-outlined text-[16px]">chevron_right</span>
             </Link>
           </div>

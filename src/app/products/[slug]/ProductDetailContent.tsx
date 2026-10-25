@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Product, getRelatedProducts, STORE_CONTACT } from "@/data/products";
 import { getWhatsAppLink } from "@/lib/whatsapp";
+import { formatProductImageUrl } from "@/lib/image";
 
 export default function ProductDetailContent({ product }: { product: Product }) {
   const relatedProducts = getRelatedProducts(product.slug, 4);
@@ -79,7 +80,7 @@ export default function ProductDetailContent({ product }: { product: Product }) 
             <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-[#e5e2e1]">
               <div className="relative w-full aspect-square bg-white rounded-lg overflow-hidden flex items-center justify-center p-4 border border-[#f0eded]">
                 <img
-                  src={images[selectedImage] || product.image}
+                  src={formatProductImageUrl(images[selectedImage] || product.image)} onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/logo.png"; }}
                   alt={product.title}
                   className="w-full h-full object-contain transition-all duration-300"
                 />
@@ -108,7 +109,7 @@ export default function ProductDetailContent({ product }: { product: Product }) 
                           : "border-gray-200 opacity-70 hover:opacity-100"
                       }`}
                     >
-                      <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-contain" />
+                      <img src={formatProductImageUrl(img)} alt={`Thumbnail ${idx + 1}`} onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/logo.png"; }} className="w-full h-full object-contain" />
                     </button>
                   ))}
                 </div>

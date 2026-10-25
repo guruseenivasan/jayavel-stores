@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Product } from "@/data/products";
 import { getWhatsAppLink } from "@/lib/whatsapp";
+import { formatProductImageUrl } from "@/lib/image";
 
 interface ProductCardProps {
   product: Product;
@@ -11,8 +12,10 @@ export default function ProductCard({ product }: ProductCardProps) {
     ((product.originalPrice - product.price) / product.originalPrice) * 100
   );
 
+  const imageUrl = formatProductImageUrl(product.image);
+
   const whatsappUrl = getWhatsAppLink(product.title, "919894198916", {
-    image: product.image,
+    image: imageUrl,
     tamilTitle: product.tamilTitle,
     price: product.price,
     sku: product.id,
@@ -24,10 +27,13 @@ export default function ProductCard({ product }: ProductCardProps) {
         {/* Image Container with Link to Detail Page */}
         <Link href={`/products/${product.slug}`} className="block relative aspect-square overflow-hidden bg-white p-2.5">
           <img
-            src={product.image}
+            src={imageUrl}
             alt={product.title}
             className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).src = "/logo.png";
+            }}
           />
           {product.tag && (
             <span className="absolute top-3 left-3 bg-[#48061d] text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
